@@ -23,13 +23,17 @@ It is an open source. Any one can fork it or clone it to his/her local machine a
 ## How should I use it?
 
 ### Install Python 3.6+ and dependent packages
-   * Install [Anaconda](https://www.anaconda.com/distribution/). After this installation, updated python and most popular python packages are installed (e.g., numpy, pandas, matplotlib, scipy, requests).
+   * Install [Anaconda](https://www.anaconda.com/distribution/). After this installation, updated python and most popular python packages are installed (e.g., *jupyter notebook, numpy, pandas, matplotlib, scipy, requests*).
    ```bash 
    conda install geopandas
    conda install h5py
    ```
 
 ### Clone and unzip to your local machine
+```
+cd (your path)/ocdpData/pythonCode
+jupyter notebook
+```
 
 ### Revise and run the code. 
 
