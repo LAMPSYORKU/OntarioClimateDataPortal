@@ -22,5 +22,9 @@ It is an open source. Any one can fork it or clone it to his/her local machine a
 
 ## How should I use it?
 
-Clone to local machine.
+### Install Python 3.6+ and dependent packages
+
+### Clone and unzip to your local machine
+
+### Revise and run the code. 
 
