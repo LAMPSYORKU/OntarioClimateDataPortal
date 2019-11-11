@@ -10,11 +10,11 @@ As there are a lot of data sets provided by OCDP in different formats, some begi
 
 ## Who made it?
 
-The developer team. 
+The yorku.ca/ocdp developer team. (contact us:lamps@yorku.ca) 
 
 ## When we made it?
 
-It was developed in October 2019 and we are continue improve it according to feedback from our users.
+It was developed in October 2019 and we are continue to improve it according to feedback from our users.
 
 ## Where should  I put it?
 
