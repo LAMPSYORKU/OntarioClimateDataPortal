@@ -14,6 +14,7 @@ A collection of frequently used data sets from yorku.ca/ocdp and many simple pyt
   * [Convert indices data to standard csv files](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Convert_data_of_Maps_Indices_section_to_csvfiles.ipynb)
   * [Read and map the changes of the indices for 2050s and 2080s relative to the reference period](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_map_indices.ipynb)
 ### Data for Time series section
+* [Read and plot annual variation of provincial averages and decadal variations for 50 regions and 150 cities](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_timeseries.ipynb)
 
 ### Data for data download section
 
