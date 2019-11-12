@@ -29,7 +29,7 @@ A collection of frequently used data sets from yorku.ca/ocdp and many simple pyt
 
 ## Why shoud we make it?
 
-As there are a lot of data sets provided by OCDP in different formats, some beginer don't know how to use this data sets in their researches. To facilitate the use of the data, we copied some frequently used data sets to this site and provided simply python programs to process these data sets.  
+As there are a lot of data sets provided by OCDP in different formats, some beginners don't know how to use these data sets in their researches. To facilitate the use of the data, we copied some frequently used data sets to this site and provided simply python programs to process these data sets.  
 
 ## Who made it?
 
@@ -37,7 +37,7 @@ The yorku.ca/ocdp developer team. (contact us:lamps@yorku.ca)
 
 ## When we made it?
 
-It was developed in October 2019 and we are continue to improve it according to feedback from our users.
+We began develop this site in October 2019 and we are continue to improve it according to feedback from our users.
 
 ## Where should  I put it?
 
@@ -59,8 +59,8 @@ cd (your path)/ocdpData/pythonCode
 jupyter notebook
 ```
 
-### Revise (variable name, location, model name, RCP, and other settings) and run the code. 
-### If users do not want to use jupyter notebook, they can copy code to python files and run in general python environment. 
+### Revise (e.g., variable name, location, model name, RCP, or other settings) and run the code. 
+### If users do not want to use jupyter notebook, they can copy codes to python files and run python programs in general python environment. 
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
