@@ -62,7 +62,8 @@ jupyter notebook
 ```
 
 ### Revise (e.g., variable name, location, model name, RCP, or other settings) and run the code. 
-### If users do not want to use jupyter notebook, they can copy codes to python files and run python programs in general python environment. 
+
+*If users do not want to use jupyter notebook, they can copy codes to python files and run python programs in general python environment.* 
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
