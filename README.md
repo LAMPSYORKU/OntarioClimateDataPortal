@@ -41,7 +41,7 @@ It was developed in October 2019 and we are continue to improve it according to 
 
 ## Where should  I put it?
 
-It is an open source. Any one can fork it or clone it to his/her local machine and revise the code according to specific requirements. 
+Anything in this site is open source. Any one can fork it or clone it to his/her local machine and revise the code according to specific requirements. 
 
 ## How should I use it?
 
@@ -51,6 +51,7 @@ It is an open source. Any one can fork it or clone it to his/her local machine a
    conda install geopandas
    conda install h5py
    ```
+   Warning: The package geopandas depends on many geographic packages, which are not easy to install with pip. Therefore, we strongly recommend users use conda to install geopandas (for generate maps).     
 
 ### Clone and unzip to your local machine
 ```
@@ -58,5 +59,6 @@ cd (your path)/ocdpData/pythonCode
 jupyter notebook
 ```
 
-### Revise and run the code. 
+### Revise (variable name, location, model name, RCP, and other settings) and run the code. 
+### If users do not want to use jupyter notebook, they can copy code to python files and run in general python environment. 
 
