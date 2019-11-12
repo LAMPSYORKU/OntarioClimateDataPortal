@@ -3,7 +3,7 @@
 ---
 ## What is this data portal?
 
-A collection of frequently used data sets from yorku.ca/ocdp and many simple python codes for reading, plotting and exporting the data.
+A collection of frequently used data sets from yorku.ca/ocdp and many simple python codes for reading, plotting and exporting the data. (total size: 580M in zip format or 1.0GB after unzip)
 
 ### Data for Maps section
 * Basic Variables (temperature, minimum temperature, maximum temperature and precipitation)
@@ -24,8 +24,10 @@ A collection of frequently used data sets from yorku.ca/ocdp and many simple pyt
   * [Grids](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_data_Future_EnsembleMean_Grids.ipynb)
   
 * Individual models
+    For daily data of individual models, our codes could directly read the data from the OCDP site. So, users don't need download the huge data to local machine. We will not upload these daily data sets to our github site as well.
   * [Municipalites](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_data_Future_Municipality_directlyfrom_OCDP.ipynb)
   * [Grids](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-Data_Database_Future_Grids_Daily_singlemodel.ipynb)
+  
 
 ## Why shoud we make it?
 
