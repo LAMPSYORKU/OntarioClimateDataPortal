@@ -7,8 +7,8 @@ A collection of frequently used data sets from yorku.ca/ocdp and many simple pyt
 
 ### Data for Maps section
 * Basic Variables (temperature, minimum temperature, maximum temperature and precipitation)
-  --[Convert data to standard csv files](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Convert_data_of_Maps_BasicVariables_section_to_csvfiles.ipynb)
-  --[Read and map the changes of the basic variables for 2050s and 2080s relative to reference period (1986-2005)](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_map_basicVariables.ipynb)
+  -- [Convert data to standard csv files](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Convert_data_of_Maps_BasicVariables_section_to_csvfiles.ipynb)
+  -- [Read and map the changes of the basic variables for 2050s and 2080s relative to reference period (1986-2005)](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_map_basicVariables.ipynb)
   
 * Climate extremes indices (38 widely used indices)
 ### Data for Time series section
