@@ -17,6 +17,15 @@ A collection of frequently used data sets from yorku.ca/ocdp and many simple pyt
 * [Read and plot annual variation of provincial averages and decadal variations for 50 regions and 150 cities](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_timeseries.ipynb)
 
 ### Data for data download section
+* Ensemble mean
+  * [Provincial averages](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_data_Future_EnsembleMean_Province.ipynb)
+  * [Regional averages](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_data_Future_EnsembleMean_Regions.ipynb)
+  * [Municipalities](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_data_Future_EnsembleMean_Municipalities.ipynb)
+  * [Grids](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_data_Future_EnsembleMean_Grids.ipynb)
+  
+* Individual models
+  * [Municipalites](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_data_Future_Municipality_directlyfrom_OCDP.ipynb)
+  * [Grids](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-Data_Database_Future_Grids_Daily_singlemodel.ipynb)
 
 ## Why shoud we make it?
 
