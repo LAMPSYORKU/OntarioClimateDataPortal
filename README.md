@@ -5,6 +5,16 @@
 
 A collection of frequently used data sets from yorku.ca/ocdp and many simple python codes for reading, plotting and exporting the data.
 
+### Data for Maps section
+* Basic Variables (temperature, minimum temperature, maximum temperature and precipitation)
+  --[Convert data to standard csv files](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Convert_data_of_Maps_BasicVariables_section_to_csvfiles.ipynb)
+  --[Read and map the changes of the basic variables for 2050s and 2080s relative to reference period (1986-2005)](https://github.com/LAMPSYORKU/OntarioClimateDataPortal/blob/master/pythonCode/Extract-data_map_basicVariables.ipynb)
+  
+* Climate extremes indices (38 widely used indices)
+### Data for Time series section
+
+### Data for data download section
+
 ## Why shoud we make it?
 
 As there are a lot of data sets provided by OCDP in different formats, some beginer don't know how to use this data sets in their researches. To facilitate the use of the data, we copied some frequently used data sets to this site and provided simply python programs to process these data sets.  
