@@ -3,7 +3,7 @@
 ---
 ## What is this data portal?
 
-A collection of frequently used data sets from yorku.ca/ocdp and many simple python codes for reading, plotting and exporting the data. (total size: **~580M** in zip format or **~1.0GB** after unzip). For the Terabytes daily data, we provided programs to directly read them from OCDP database. Users don't need download them to local machine.
+A collection of frequently used data sets from yorku.ca/ocdp and many simple python codes for reading, plotting and exporting the data. (total size: **~580M** in zip format or **~1.0GB** after unzip). For the **Terabytes daily data of individual models**, we provided programs to directly read them from OCDP database. Users don't need download them to local machine.
 
 ### Data for Maps section
 * Basic Variables (temperature, minimum temperature, maximum temperature and precipitation)
