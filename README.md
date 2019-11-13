@@ -65,7 +65,7 @@ jupyter notebook
 
 *If users do not want to use jupyter notebook, they can copy codes to python files and run python programs in general python environment.* 
 
-##                                                           [Back to OCDP](http://lamps.math.yorku.ca/OntarioClimate/)
+## [Back to OCDP](http://lamps.math.yorku.ca/OntarioClimate/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
