@@ -1,0 +1,2131 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Ontario Climate Change Data Portal</title>
+    <meta charset="utf-8">
+	<meta name="author" content="Dr. Ziwang Deng, Department of Mathematics & Statistics,York University">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://www.w3schools.com/lib/w3.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/lib/jeasyui/jquery.easyui.min.js"></script>	
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+	p {font-size: 100%;}
+	h1 {color:#008080;}
+	#header {background-color: #0099FF}
+	//#header {background-image: url("bubble_04.png");}
+  .navbar {
+      margin-bottom: 0;
+	  padding-bottom: 5px;
+      background-color: #0099FF;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #0099FF !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+ #wrapper {
+	margin-top: 30px;
+ }
+ #sidebar-wrapper {
+	padding: 10px 0 0px 0;
+ }
+	</style>
+</head>
+
+<body ng-app="app_data" ng-controller="TreeMenuCtrl">
+<div class="container">
+<!-----------------head nav start-------------------------------->
+	<!--div ng-include="'headNavBar.html'"></div-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+
+
+    <div class="navbar-header">
+
+        <a class="navbar-brand" href="http://lamps.math.yorku.ca/OntarioClimate/index_v18.htm">
+            <span class="glyphicon glyphicon-home" style="color:red;"></span> <span>OCDP</span>
+        </a>
+    </div>
+    <div id="myNavbar">   
+        <ul class="nav navbar-nav">
+            <li>
+			  <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_maps.htm"><span class="glyphicon glyphicon-globe" style="color:red;"></span><span>Maps</a>
+            </li>
+            <li>
+			  <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_timeseries.htm"><i class="fa fa-line-chart" style="color:red;"></i><span>Time-series</a>
+            </li>			
+            <li class="hidden-xs">
+			    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_data.htm"><span class="glyphicon glyphicon-save" style="color:red;"></span><span>Data</span></a>
+            </li>			
+            <li class="hidden-xs">
+              <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_documents.htm"><i class="fa fa-file-image-o"  style="color:red;"></i> <span>Documents</span></a>
+            </li>
+            <li class="hidden-xs">
+              <a href="#faq"><i class="fa fa-info-circle"  style="color:red;"></i> <span>FAQ</span></b></a>
+            </li>			
+        </ul>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+			<li>
+                <a href="#ClimateChangeTeam"><span class="glyphicon glyphicon-user"></span> Team</a>
+            </li>
+		</ul>
+
+
+		    <!--
+
+
+		    <li  style="margin-right:30px;">
+			    <a href="http://lamps.math.yorku.ca/OntarioClimate/searchPage.html"><span class="glyphicon glyphicon-search"></span> Search</a>
+			</li>
+			-->
+        
+	</div>
+	</div>
+
+</nav>
+
+<!-----------------head nav end-------------------------------->
+
+
+	<div  class="container" id="wrapper">
+	<!--------side menu tree start----------------------------------------------------->
+		<div id="sidebar-wrapper" class="col-md-2 col-sm-3 hidden-xs">
+		<!--
+                  <h6 class="lead text-info text-center"><small>Ontario Climate Information</small></h6>
+		-->
+			<div id="sidebar" class="well well-sm">
+		  
+		  
+			<!--h6 class="lead text-info text-center"><small>Ontario Climate Information</small></h6-->
+		   
+
+			<br>
+			<div>
+			<script>
+			  (function() {
+				var cx = '006097446396650386672:i1sl2siau28';
+				var gcse = document.createElement('script');
+				gcse.type = 'text/javascript';
+				gcse.async = true;
+				gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(gcse, s);
+			  })();
+			</script>
+			<gcse:searchbox-only></gcse:searchbox-only>
+	        </div>			
+	<!--The tree menu start{{DocumentsState}}-->	
+
+			<div class="easyui-panel" style="padding:5px">
+			  <ul class="easyui-tree" data-options="animate:true,lines:true">
+			  
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_maps.htm"><span class="glyphicon glyphicon-globe" style="color:red;"></span><span>Maps</span></a>
+				</li>			  
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_timeseries.htm"><i class="fa fa-line-chart" style="color:red;"></i><span>Time-series</span></a>
+				</li>			  
+				<li data-options="state:'open'">
+					<span>Data</span>
+					<ul>
+						<li>
+							<span><a href="https://cmip5.lamps.yorku.ca:5001/fsdownload/H8pWZgk18/CMIP5">Cloud</a></span>
+						</li>
+
+									<li  data-options="state:'open'">
+										<span>Database</span>
+										<ul>
+										<li><span><a href="#historicaldata">Historical</a></span></li>
+										<li data-options="state:'open'">
+										<span>Future</span>
+										<ul>
+											<li><span><a href="#ProvinceAverageEnsembleMean">Provincial Averages Anomaly</a></span></li>
+											<li><span><a href="#RegionEnsembleMeanData">Regional Averages Ensemble Mean</a></span></li>
+											<li><span><a href="#StationsEnsembleMeanData">Municipal Ensemble Mean Data</a></span></li>
+											<li data-options="state:'closed'">
+										    <span>Municipalities Daily Data</span>
+
+            <ul>
+              <li data-options="state:'closed'">
+              <span>tas</span>
+                <ul>
+                  <li>
+                  <span><a href="#AJAXtasdailyRCP85">AJAX</a></span>
+                  </li>				
+                  <li>
+                  <span><a href="#ALBION_FIELD_CENTREtasdailyRCP85">ALBION_FIELD_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ALLISTON_NELSONtasdailyRCP85">ALLISTON_NELSON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#AMHERSTBURGtasdailyRCP85">AMHERSTBURG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ARNPRIOR_GRANDONtasdailyRCP85">ARNPRIOR_GRANDON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#AVONMOREtasdailyRCP85">AVONMORE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BARRIE_WPCCtasdailyRCP85">BARRIE_WPCC</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BARWICKtasdailyRCP85">BARWICK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BEATRICE_2tasdailyRCP85">BEATRICE_2</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BELLEVILLEtasdailyRCP85">BELLEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BLYTHtasdailyRCP85">BLYTH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BOWMANVILLE_MOSTERTtasdailyRCP85">BOWMANVILLE_MOSTERT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BRADFORD_MUCK_RESEARCHtasdailyRCP85">BRADFORD_MUCK_RESEARCH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BRANTFORD_MOEtasdailyRCP85">BRANTFORD_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BROCKVILLE_PCCtasdailyRCP85">BROCKVILLE_PCC</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BURKETON_MCLAUGHLINtasdailyRCP85">BURKETON_MCLAUGHLIN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BURLINGTON_TStasdailyRCP85">BURLINGTON_TS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CAMERON_FALLStasdailyRCP85">CAMERON_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CENTREVILLEtasdailyRCP85">CENTREVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHALK_RIVER_AECLtasdailyRCP85">CHALK_RIVER_AECL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHAPLEAU_AtasdailyRCP85">CHAPLEAU_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHATHAM_WPCPtasdailyRCP85">CHATHAM_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHATSWORTHtasdailyRCP85">CHATSWORTH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COBOURG_STPtasdailyRCP85">COBOURG_STP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COMBERMEREtasdailyRCP85">COMBERMERE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CONISTON_STPtasdailyRCP85">CONISTON_STP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COOKSTOWNtasdailyRCP85">COOKSTOWN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CORNWALLtasdailyRCP85">CORNWALL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COURTRIGHTtasdailyRCP85">COURTRIGHT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CRESSYtasdailyRCP85">CRESSY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CULLODEN_EASEYtasdailyRCP85">CULLODEN_EASEY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DALHOUSIE_MILLStasdailyRCP85">DALHOUSIE_MILLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DASHWOODtasdailyRCP85">DASHWOOD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DELHI_CDAtasdailyRCP85">DELHI_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DORSET_MOEtasdailyRCP85">DORSET_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRESDENtasdailyRCP85">DRESDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRUMMOND_CENTREtasdailyRCP85">DRUMMOND_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRYDENtasdailyRCP85">DRYDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRYDEN_AtasdailyRCP85">DRYDEN_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DUNCHURCHtasdailyRCP85">DUNCHURCH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DURHAMtasdailyRCP85">DURHAM</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DWIGHTtasdailyRCP85">DWIGHT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EARLTON_AtasdailyRCP85">EARLTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EGBERT_CAREtasdailyRCP85">EGBERT_CARE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EMO_RADBOURNEtasdailyRCP85">EMO_RADBOURNE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ESSA_ONT_HYDROtasdailyRCP85">ESSA_ONT_HYDRO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EXETERtasdailyRCP85">EXETER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FERGUS_SHAND_DAMtasdailyRCP85">FERGUS_SHAND_DAM</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FLINTtasdailyRCP85">FLINT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FOLDENStasdailyRCP85">FOLDENS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FORT_ERIEtasdailyRCP85">FORT_ERIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FORT_FRANCES_AtasdailyRCP85">FORT_FRANCES_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GEORGETOWN_WWTPtasdailyRCP85">GEORGETOWN_WWTP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GERALDTON_AtasdailyRCP85">GERALDTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLEN_ALLANtasdailyRCP85">GLEN_ALLAN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLEN_GORDONtasdailyRCP85">GLEN_GORDON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLENBURNIEtasdailyRCP85">GLENBURNIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GODFREYtasdailyRCP85">GODFREY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAGERSVILLEtasdailyRCP85">HAGERSVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HALIBURTON_3tasdailyRCP85">HALIBURTON_3</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAMILTON_AtasdailyRCP85">HAMILTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAMILTON_RBGtasdailyRCP85">HAMILTON_RBG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HANOVERtasdailyRCP85">HANOVER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HARTINGTON_IHDtasdailyRCP85">HARTINGTON_IHD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HUNTSVILLE_WPCPtasdailyRCP85">HUNTSVILLE_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ILDERTON_BEAR_CREEKtasdailyRCP85">ILDERTON_BEAR_CREEK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ISLAND_FALLStasdailyRCP85">ISLAND_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#JANETVILLEtasdailyRCP85">JANETVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KAPUSKASING_AtasdailyRCP85">KAPUSKASING_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KAPUSKASING_CDAtasdailyRCP85">KAPUSKASING_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KEMPTVILLEtasdailyRCP85">KEMPTVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KENORA_AtasdailyRCP85">KENORA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KING_SMOKE_TREEtasdailyRCP85">KING_SMOKE_TREE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KINGSTON_PUMPING_STATIONtasdailyRCP85">KINGSTON_PUMPING_STATION</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KINGSVILLE_MOEtasdailyRCP85">KINGSVILLE_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LINDSAY_FROSTtasdailyRCP85">LINDSAY_FROST</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LONDON_AIRPORTtasdailyRCP85">LONDON_AIRPORT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LYNDHURST_SHAWMEREtasdailyRCP85">LYNDHURST_SHAWMERE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MADAWASKAtasdailyRCP85">MADAWASKA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MASSEYtasdailyRCP85">MASSEY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MIDDLEPORT_TStasdailyRCP85">MIDDLEPORT_TS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MIDLAND_WATERtasdailyRCP85">MIDLAND_WATER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MILLGROVEtasdailyRCP85">MILLGROVE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MINDENtasdailyRCP85">MINDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MINE_CENTREtasdailyRCP85">MINE_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MONETVILLEtasdailyRCP85">MONETVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MOOSONEE_UAtasdailyRCP85">MOOSONEE_UA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MORRISBURGtasdailyRCP85">MORRISBURG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MOUNTAINVIEWtasdailyRCP85">MOUNTAINVIEW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MUSKOKA_AtasdailyRCP85">MUSKOKA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NEW_GLASGOWtasdailyRCP85">NEW_GLASGOW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NIAGARA_FALLS_NPCSHtasdailyRCP85">NIAGARA_FALLS_NPCSH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NORTH_BAY_AtasdailyRCP85">NORTH_BAY_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OAKVILLE_SOUTHEAST_WPCPtasdailyRCP85">OAKVILLE_SOUTHEAST_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ORANGEVILLE_MOEtasdailyRCP85">ORANGEVILLE_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OSHAWA_WPCPtasdailyRCP85">OSHAWA_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OTTAWA_CDAtasdailyRCP85">OTTAWA_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OTTAWA_MACDONALDtasdailyRCP85">OTTAWA_MACDONALD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OWEN_SOUND_MOEtasdailyRCP85">OWEN_SOUND_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETERBOROUGH_AtasdailyRCP85">PETERBOROUGH_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETERBOROUGH_TRENT_UtasdailyRCP85">PETERBOROUGH_TRENT_U</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETROLIA_TOWNtasdailyRCP85">PETROLIA_TOWN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PICKLE_LAKE_AtasdailyRCP85">PICKLE_LAKE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORCUPINE_ONT_HYDROtasdailyRCP85">PORCUPINE_ONT_HYDRO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORT_COLBORNEtasdailyRCP85">PORT_COLBORNE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORT_DALHOUSIEtasdailyRCP85">PORT_DALHOUSIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#POWASSANtasdailyRCP85">POWASSAN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PRESTONtasdailyRCP85">PRESTON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PROTON_STATIONtasdailyRCP85">PROTON_STATION</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RAWSON_LAKEtasdailyRCP85">RAWSON_LAKE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RED_LAKE_AtasdailyRCP85">RED_LAKE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RENFREWtasdailyRCP85">RENFREW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RICHMOND_HILLtasdailyRCP85">RICHMOND_HILL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RIDGEVILLEtasdailyRCP85">RIDGEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ROSEVILLEtasdailyRCP85">ROSEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RUSKVIEWtasdailyRCP85">RUSKVIEW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RUSSELLtasdailyRCP85">RUSSELL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SARNIA_AIRPORTtasdailyRCP85">SARNIA_AIRPORT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SAULT_STE_MARIE_2tasdailyRCP85">SAULT_STE_MARIE_2</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SAULT_STE_MARIE_AtasdailyRCP85">SAULT_STE_MARIE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SHANTY_BAYtasdailyRCP85">SHANTY_BAY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SIOUX_LOOKOUT_AtasdailyRCP85">SIOUX_LOOKOUT_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SMOKY_FALLStasdailyRCP85">SMOKY_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SOUTH_MOUNTAINtasdailyRCP85">SOUTH_MOUNTAIN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_CATHARINES_AtasdailyRCP85">ST_CATHARINES_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_CATHARINES_POWER_GLENtasdailyRCP85">ST_CATHARINES_POWER_GLEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_THOMAS_WPCPtasdailyRCP85">ST_THOMAS_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_ALBERTtasdailyRCP85">ST_ALBERT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#STRATFORD_WWTPtasdailyRCP85">STRATFORD_WWTP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#STRATHROYtasdailyRCP85">STRATHROY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SUDBURY_AtasdailyRCP85">SUDBURY_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TARAtasdailyRCP85">TARA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#THEDFORDtasdailyRCP85">THEDFORD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#THORNBURY_SLAMAtasdailyRCP85">THORNBURY_SLAMA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TIMMINS_VICTOR_POWER_AtasdailyRCP85">TIMMINS_VICTOR_POWER_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTOtasdailyRCP85">TORONTO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTO_BUTTONVILLE_AtasdailyRCP85">TORONTO_BUTTONVILLE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTO_LESTER_BtasdailyRCP85">TORONTO_LESTER_B</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TRANQUILLO_RIDGEtasdailyRCP85">TRANQUILLO_RIDGE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TRENTON_AtasdailyRCP85">TRENTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TYRONEtasdailyRCP85">TYRONE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#UDORAtasdailyRCP85">UDORA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#VINELAND_RITTENHOUSEtasdailyRCP85">VINELAND_RITTENHOUSE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WAWA_AtasdailyRCP85">WAWA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WELLANDtasdailyRCP85">WELLAND</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WHITEFISH_LAKEtasdailyRCP85">WHITEFISH_LAKE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WIARTON_AtasdailyRCP85">WIARTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WINDSOR_AtasdailyRCP85">WINDSOR_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOODBRIDGEtasdailyRCP85">WOODBRIDGE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOODSTOCKtasdailyRCP85">WOODSTOCK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOOLERtasdailyRCP85">WOOLER</a></span>
+                  </li>
+                </ul>
+              </li>
+              <li data-options="state:'closed'">
+              <span>tasmax</span>
+                <ul>
+                  <li>
+                  <span><a href="#AJAXtasmaxdailyRCP85">AJAX</a></span>
+                  </li>				
+                  <li>
+                  <span><a href="#ALBION_FIELD_CENTREtasmaxdailyRCP85">ALBION_FIELD_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ALLISTON_NELSONtasmaxdailyRCP85">ALLISTON_NELSON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#AMHERSTBURGtasmaxdailyRCP85">AMHERSTBURG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ARNPRIOR_GRANDONtasmaxdailyRCP85">ARNPRIOR_GRANDON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#AVONMOREtasmaxdailyRCP85">AVONMORE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BARRIE_WPCCtasmaxdailyRCP85">BARRIE_WPCC</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BARWICKtasmaxdailyRCP85">BARWICK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BEATRICE_2tasmaxdailyRCP85">BEATRICE_2</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BELLEVILLEtasmaxdailyRCP85">BELLEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BLYTHtasmaxdailyRCP85">BLYTH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BOWMANVILLE_MOSTERTtasmaxdailyRCP85">BOWMANVILLE_MOSTERT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BRADFORD_MUCK_RESEARCHtasmaxdailyRCP85">BRADFORD_MUCK_RESEARCH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BRANTFORD_MOEtasmaxdailyRCP85">BRANTFORD_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BROCKVILLE_PCCtasmaxdailyRCP85">BROCKVILLE_PCC</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BURKETON_MCLAUGHLINtasmaxdailyRCP85">BURKETON_MCLAUGHLIN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BURLINGTON_TStasmaxdailyRCP85">BURLINGTON_TS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CAMERON_FALLStasmaxdailyRCP85">CAMERON_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CENTREVILLEtasmaxdailyRCP85">CENTREVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHALK_RIVER_AECLtasmaxdailyRCP85">CHALK_RIVER_AECL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHAPLEAU_AtasmaxdailyRCP85">CHAPLEAU_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHATHAM_WPCPtasmaxdailyRCP85">CHATHAM_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHATSWORTHtasmaxdailyRCP85">CHATSWORTH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COBOURG_STPtasmaxdailyRCP85">COBOURG_STP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COMBERMEREtasmaxdailyRCP85">COMBERMERE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CONISTON_STPtasmaxdailyRCP85">CONISTON_STP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COOKSTOWNtasmaxdailyRCP85">COOKSTOWN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CORNWALLtasmaxdailyRCP85">CORNWALL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COURTRIGHTtasmaxdailyRCP85">COURTRIGHT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CRESSYtasmaxdailyRCP85">CRESSY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CULLODEN_EASEYtasmaxdailyRCP85">CULLODEN_EASEY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DALHOUSIE_MILLStasmaxdailyRCP85">DALHOUSIE_MILLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DASHWOODtasmaxdailyRCP85">DASHWOOD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DELHI_CDAtasmaxdailyRCP85">DELHI_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DORSET_MOEtasmaxdailyRCP85">DORSET_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRESDENtasmaxdailyRCP85">DRESDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRUMMOND_CENTREtasmaxdailyRCP85">DRUMMOND_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRYDENtasmaxdailyRCP85">DRYDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRYDEN_AtasmaxdailyRCP85">DRYDEN_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DUNCHURCHtasmaxdailyRCP85">DUNCHURCH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DURHAMtasmaxdailyRCP85">DURHAM</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DWIGHTtasmaxdailyRCP85">DWIGHT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EARLTON_AtasmaxdailyRCP85">EARLTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EGBERT_CAREtasmaxdailyRCP85">EGBERT_CARE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EMO_RADBOURNEtasmaxdailyRCP85">EMO_RADBOURNE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ESSA_ONT_HYDROtasmaxdailyRCP85">ESSA_ONT_HYDRO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EXETERtasmaxdailyRCP85">EXETER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FERGUS_SHAND_DAMtasmaxdailyRCP85">FERGUS_SHAND_DAM</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FLINTtasmaxdailyRCP85">FLINT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FOLDENStasmaxdailyRCP85">FOLDENS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FORT_ERIEtasmaxdailyRCP85">FORT_ERIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FORT_FRANCES_AtasmaxdailyRCP85">FORT_FRANCES_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GEORGETOWN_WWTPtasmaxdailyRCP85">GEORGETOWN_WWTP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GERALDTON_AtasmaxdailyRCP85">GERALDTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLEN_ALLANtasmaxdailyRCP85">GLEN_ALLAN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLEN_GORDONtasmaxdailyRCP85">GLEN_GORDON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLENBURNIEtasmaxdailyRCP85">GLENBURNIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GODFREYtasmaxdailyRCP85">GODFREY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAGERSVILLEtasmaxdailyRCP85">HAGERSVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HALIBURTON_3tasmaxdailyRCP85">HALIBURTON_3</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAMILTON_AtasmaxdailyRCP85">HAMILTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAMILTON_RBGtasmaxdailyRCP85">HAMILTON_RBG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HANOVERtasmaxdailyRCP85">HANOVER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HARTINGTON_IHDtasmaxdailyRCP85">HARTINGTON_IHD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HUNTSVILLE_WPCPtasmaxdailyRCP85">HUNTSVILLE_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ILDERTON_BEAR_CREEKtasmaxdailyRCP85">ILDERTON_BEAR_CREEK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ISLAND_FALLStasmaxdailyRCP85">ISLAND_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#JANETVILLEtasmaxdailyRCP85">JANETVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KAPUSKASING_AtasmaxdailyRCP85">KAPUSKASING_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KAPUSKASING_CDAtasmaxdailyRCP85">KAPUSKASING_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KEMPTVILLEtasmaxdailyRCP85">KEMPTVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KENORA_AtasmaxdailyRCP85">KENORA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KING_SMOKE_TREEtasmaxdailyRCP85">KING_SMOKE_TREE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KINGSTON_PUMPING_STATIONtasmaxdailyRCP85">KINGSTON_PUMPING_STATION</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KINGSVILLE_MOEtasmaxdailyRCP85">KINGSVILLE_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LINDSAY_FROSTtasmaxdailyRCP85">LINDSAY_FROST</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LONDON_AIRPORTtasmaxdailyRCP85">LONDON_AIRPORT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LYNDHURST_SHAWMEREtasmaxdailyRCP85">LYNDHURST_SHAWMERE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MADAWASKAtasmaxdailyRCP85">MADAWASKA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MASSEYtasmaxdailyRCP85">MASSEY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MIDDLEPORT_TStasmaxdailyRCP85">MIDDLEPORT_TS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MIDLAND_WATERtasmaxdailyRCP85">MIDLAND_WATER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MILLGROVEtasmaxdailyRCP85">MILLGROVE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MINDENtasmaxdailyRCP85">MINDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MINE_CENTREtasmaxdailyRCP85">MINE_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MONETVILLEtasmaxdailyRCP85">MONETVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MOOSONEE_UAtasmaxdailyRCP85">MOOSONEE_UA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MORRISBURGtasmaxdailyRCP85">MORRISBURG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MOUNTAINVIEWtasmaxdailyRCP85">MOUNTAINVIEW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MUSKOKA_AtasmaxdailyRCP85">MUSKOKA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NEW_GLASGOWtasmaxdailyRCP85">NEW_GLASGOW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NIAGARA_FALLS_NPCSHtasmaxdailyRCP85">NIAGARA_FALLS_NPCSH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NORTH_BAY_AtasmaxdailyRCP85">NORTH_BAY_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OAKVILLE_SOUTHEAST_WPCPtasmaxdailyRCP85">OAKVILLE_SOUTHEAST_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ORANGEVILLE_MOEtasmaxdailyRCP85">ORANGEVILLE_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OSHAWA_WPCPtasmaxdailyRCP85">OSHAWA_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OTTAWA_CDAtasmaxdailyRCP85">OTTAWA_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OTTAWA_MACDONALDtasmaxdailyRCP85">OTTAWA_MACDONALD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OWEN_SOUND_MOEtasmaxdailyRCP85">OWEN_SOUND_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETERBOROUGH_AtasmaxdailyRCP85">PETERBOROUGH_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETERBOROUGH_TRENT_UtasmaxdailyRCP85">PETERBOROUGH_TRENT_U</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETROLIA_TOWNtasmaxdailyRCP85">PETROLIA_TOWN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PICKLE_LAKE_AtasmaxdailyRCP85">PICKLE_LAKE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORCUPINE_ONT_HYDROtasmaxdailyRCP85">PORCUPINE_ONT_HYDRO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORT_COLBORNEtasmaxdailyRCP85">PORT_COLBORNE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORT_DALHOUSIEtasmaxdailyRCP85">PORT_DALHOUSIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#POWASSANtasmaxdailyRCP85">POWASSAN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PRESTONtasmaxdailyRCP85">PRESTON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PROTON_STATIONtasmaxdailyRCP85">PROTON_STATION</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RAWSON_LAKEtasmaxdailyRCP85">RAWSON_LAKE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RED_LAKE_AtasmaxdailyRCP85">RED_LAKE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RENFREWtasmaxdailyRCP85">RENFREW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RICHMOND_HILLtasmaxdailyRCP85">RICHMOND_HILL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RIDGEVILLEtasmaxdailyRCP85">RIDGEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ROSEVILLEtasmaxdailyRCP85">ROSEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RUSKVIEWtasmaxdailyRCP85">RUSKVIEW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RUSSELLtasmaxdailyRCP85">RUSSELL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SARNIA_AIRPORTtasmaxdailyRCP85">SARNIA_AIRPORT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SAULT_STE_MARIE_2tasmaxdailyRCP85">SAULT_STE_MARIE_2</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SAULT_STE_MARIE_AtasmaxdailyRCP85">SAULT_STE_MARIE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SHANTY_BAYtasmaxdailyRCP85">SHANTY_BAY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SIOUX_LOOKOUT_AtasmaxdailyRCP85">SIOUX_LOOKOUT_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SMOKY_FALLStasmaxdailyRCP85">SMOKY_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SOUTH_MOUNTAINtasmaxdailyRCP85">SOUTH_MOUNTAIN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_CATHARINES_AtasmaxdailyRCP85">ST_CATHARINES_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_CATHARINES_POWER_GLENtasmaxdailyRCP85">ST_CATHARINES_POWER_GLEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_THOMAS_WPCPtasmaxdailyRCP85">ST_THOMAS_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_ALBERTtasmaxdailyRCP85">ST_ALBERT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#STRATFORD_WWTPtasmaxdailyRCP85">STRATFORD_WWTP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#STRATHROYtasmaxdailyRCP85">STRATHROY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SUDBURY_AtasmaxdailyRCP85">SUDBURY_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TARAtasmaxdailyRCP85">TARA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#THEDFORDtasmaxdailyRCP85">THEDFORD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#THORNBURY_SLAMAtasmaxdailyRCP85">THORNBURY_SLAMA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TIMMINS_VICTOR_POWER_AtasmaxdailyRCP85">TIMMINS_VICTOR_POWER_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTOtasmaxdailyRCP85">TORONTO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTO_BUTTONVILLE_AtasmaxdailyRCP85">TORONTO_BUTTONVILLE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTO_LESTER_BtasmaxdailyRCP85">TORONTO_LESTER_B</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TRANQUILLO_RIDGEtasmaxdailyRCP85">TRANQUILLO_RIDGE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TRENTON_AtasmaxdailyRCP85">TRENTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TYRONEtasmaxdailyRCP85">TYRONE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#UDORAtasmaxdailyRCP85">UDORA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#VINELAND_RITTENHOUSEtasmaxdailyRCP85">VINELAND_RITTENHOUSE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WAWA_AtasmaxdailyRCP85">WAWA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WELLANDtasmaxdailyRCP85">WELLAND</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WHITEFISH_LAKEtasmaxdailyRCP85">WHITEFISH_LAKE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WIARTON_AtasmaxdailyRCP85">WIARTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WINDSOR_AtasmaxdailyRCP85">WINDSOR_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOODBRIDGEtasmaxdailyRCP85">WOODBRIDGE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOODSTOCKtasmaxdailyRCP85">WOODSTOCK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOOLERtasmaxdailyRCP85">WOOLER</a></span>
+                  </li>
+                </ul>
+              </li>
+              <li data-options="state:'closed'">
+              <span>tasmin</span>
+                <ul>
+                  <li>
+                  <span><a href="#AJAXtasmindailyRCP85">AJAX</a></span>
+                  </li>				
+                  <li>
+                  <span><a href="#ALBION_FIELD_CENTREtasmindailyRCP85">ALBION_FIELD_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ALLISTON_NELSONtasmindailyRCP85">ALLISTON_NELSON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#AMHERSTBURGtasmindailyRCP85">AMHERSTBURG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ARNPRIOR_GRANDONtasmindailyRCP85">ARNPRIOR_GRANDON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#AVONMOREtasmindailyRCP85">AVONMORE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BARRIE_WPCCtasmindailyRCP85">BARRIE_WPCC</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BARWICKtasmindailyRCP85">BARWICK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BEATRICE_2tasmindailyRCP85">BEATRICE_2</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BELLEVILLEtasmindailyRCP85">BELLEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BLYTHtasmindailyRCP85">BLYTH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BOWMANVILLE_MOSTERTtasmindailyRCP85">BOWMANVILLE_MOSTERT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BRADFORD_MUCK_RESEARCHtasmindailyRCP85">BRADFORD_MUCK_RESEARCH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BRANTFORD_MOEtasmindailyRCP85">BRANTFORD_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BROCKVILLE_PCCtasmindailyRCP85">BROCKVILLE_PCC</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BURKETON_MCLAUGHLINtasmindailyRCP85">BURKETON_MCLAUGHLIN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BURLINGTON_TStasmindailyRCP85">BURLINGTON_TS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CAMERON_FALLStasmindailyRCP85">CAMERON_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CENTREVILLEtasmindailyRCP85">CENTREVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHALK_RIVER_AECLtasmindailyRCP85">CHALK_RIVER_AECL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHAPLEAU_AtasmindailyRCP85">CHAPLEAU_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHATHAM_WPCPtasmindailyRCP85">CHATHAM_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHATSWORTHtasmindailyRCP85">CHATSWORTH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COBOURG_STPtasmindailyRCP85">COBOURG_STP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COMBERMEREtasmindailyRCP85">COMBERMERE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CONISTON_STPtasmindailyRCP85">CONISTON_STP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COOKSTOWNtasmindailyRCP85">COOKSTOWN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CORNWALLtasmindailyRCP85">CORNWALL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COURTRIGHTtasmindailyRCP85">COURTRIGHT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CRESSYtasmindailyRCP85">CRESSY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CULLODEN_EASEYtasmindailyRCP85">CULLODEN_EASEY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DALHOUSIE_MILLStasmindailyRCP85">DALHOUSIE_MILLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DASHWOODtasmindailyRCP85">DASHWOOD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DELHI_CDAtasmindailyRCP85">DELHI_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DORSET_MOEtasmindailyRCP85">DORSET_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRESDENtasmindailyRCP85">DRESDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRUMMOND_CENTREtasmindailyRCP85">DRUMMOND_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRYDENtasmindailyRCP85">DRYDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRYDEN_AtasmindailyRCP85">DRYDEN_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DUNCHURCHtasmindailyRCP85">DUNCHURCH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DURHAMtasmindailyRCP85">DURHAM</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DWIGHTtasmindailyRCP85">DWIGHT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EARLTON_AtasmindailyRCP85">EARLTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EGBERT_CAREtasmindailyRCP85">EGBERT_CARE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EMO_RADBOURNEtasmindailyRCP85">EMO_RADBOURNE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ESSA_ONT_HYDROtasmindailyRCP85">ESSA_ONT_HYDRO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EXETERtasmindailyRCP85">EXETER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FERGUS_SHAND_DAMtasmindailyRCP85">FERGUS_SHAND_DAM</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FLINTtasmindailyRCP85">FLINT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FOLDENStasmindailyRCP85">FOLDENS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FORT_ERIEtasmindailyRCP85">FORT_ERIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FORT_FRANCES_AtasmindailyRCP85">FORT_FRANCES_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GEORGETOWN_WWTPtasmindailyRCP85">GEORGETOWN_WWTP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GERALDTON_AtasmindailyRCP85">GERALDTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLEN_ALLANtasmindailyRCP85">GLEN_ALLAN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLEN_GORDONtasmindailyRCP85">GLEN_GORDON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLENBURNIEtasmindailyRCP85">GLENBURNIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GODFREYtasmindailyRCP85">GODFREY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAGERSVILLEtasmindailyRCP85">HAGERSVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HALIBURTON_3tasmindailyRCP85">HALIBURTON_3</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAMILTON_AtasmindailyRCP85">HAMILTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAMILTON_RBGtasmindailyRCP85">HAMILTON_RBG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HANOVERtasmindailyRCP85">HANOVER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HARTINGTON_IHDtasmindailyRCP85">HARTINGTON_IHD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HUNTSVILLE_WPCPtasmindailyRCP85">HUNTSVILLE_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ILDERTON_BEAR_CREEKtasmindailyRCP85">ILDERTON_BEAR_CREEK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ISLAND_FALLStasmindailyRCP85">ISLAND_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#JANETVILLEtasmindailyRCP85">JANETVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KAPUSKASING_AtasmindailyRCP85">KAPUSKASING_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KAPUSKASING_CDAtasmindailyRCP85">KAPUSKASING_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KEMPTVILLEtasmindailyRCP85">KEMPTVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KENORA_AtasmindailyRCP85">KENORA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KING_SMOKE_TREEtasmindailyRCP85">KING_SMOKE_TREE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KINGSTON_PUMPING_STATIONtasmindailyRCP85">KINGSTON_PUMPING_STATION</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KINGSVILLE_MOEtasmindailyRCP85">KINGSVILLE_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LINDSAY_FROSTtasmindailyRCP85">LINDSAY_FROST</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LONDON_AIRPORTtasmindailyRCP85">LONDON_AIRPORT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LYNDHURST_SHAWMEREtasmindailyRCP85">LYNDHURST_SHAWMERE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MADAWASKAtasmindailyRCP85">MADAWASKA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MASSEYtasmindailyRCP85">MASSEY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MIDDLEPORT_TStasmindailyRCP85">MIDDLEPORT_TS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MIDLAND_WATERtasmindailyRCP85">MIDLAND_WATER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MILLGROVEtasmindailyRCP85">MILLGROVE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MINDENtasmindailyRCP85">MINDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MINE_CENTREtasmindailyRCP85">MINE_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MONETVILLEtasmindailyRCP85">MONETVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MOOSONEE_UAtasmindailyRCP85">MOOSONEE_UA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MORRISBURGtasmindailyRCP85">MORRISBURG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MOUNTAINVIEWtasmindailyRCP85">MOUNTAINVIEW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MUSKOKA_AtasmindailyRCP85">MUSKOKA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NEW_GLASGOWtasmindailyRCP85">NEW_GLASGOW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NIAGARA_FALLS_NPCSHtasmindailyRCP85">NIAGARA_FALLS_NPCSH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NORTH_BAY_AtasmindailyRCP85">NORTH_BAY_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OAKVILLE_SOUTHEAST_WPCPtasmindailyRCP85">OAKVILLE_SOUTHEAST_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ORANGEVILLE_MOEtasmindailyRCP85">ORANGEVILLE_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OSHAWA_WPCPtasmindailyRCP85">OSHAWA_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OTTAWA_CDAtasmindailyRCP85">OTTAWA_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OTTAWA_MACDONALDtasmindailyRCP85">OTTAWA_MACDONALD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OWEN_SOUND_MOEtasmindailyRCP85">OWEN_SOUND_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETERBOROUGH_AtasmindailyRCP85">PETERBOROUGH_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETERBOROUGH_TRENT_UtasmindailyRCP85">PETERBOROUGH_TRENT_U</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETROLIA_TOWNtasmindailyRCP85">PETROLIA_TOWN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PICKLE_LAKE_AtasmindailyRCP85">PICKLE_LAKE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORCUPINE_ONT_HYDROtasmindailyRCP85">PORCUPINE_ONT_HYDRO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORT_COLBORNEtasmindailyRCP85">PORT_COLBORNE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORT_DALHOUSIEtasmindailyRCP85">PORT_DALHOUSIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#POWASSANtasmindailyRCP85">POWASSAN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PRESTONtasmindailyRCP85">PRESTON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PROTON_STATIONtasmindailyRCP85">PROTON_STATION</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RAWSON_LAKEtasmindailyRCP85">RAWSON_LAKE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RED_LAKE_AtasmindailyRCP85">RED_LAKE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RENFREWtasmindailyRCP85">RENFREW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RICHMOND_HILLtasmindailyRCP85">RICHMOND_HILL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RIDGEVILLEtasmindailyRCP85">RIDGEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ROSEVILLEtasmindailyRCP85">ROSEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RUSKVIEWtasmindailyRCP85">RUSKVIEW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RUSSELLtasmindailyRCP85">RUSSELL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SARNIA_AIRPORTtasmindailyRCP85">SARNIA_AIRPORT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SAULT_STE_MARIE_2tasmindailyRCP85">SAULT_STE_MARIE_2</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SAULT_STE_MARIE_AtasmindailyRCP85">SAULT_STE_MARIE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SHANTY_BAYtasmindailyRCP85">SHANTY_BAY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SIOUX_LOOKOUT_AtasmindailyRCP85">SIOUX_LOOKOUT_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SMOKY_FALLStasmindailyRCP85">SMOKY_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SOUTH_MOUNTAINtasmindailyRCP85">SOUTH_MOUNTAIN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_CATHARINES_AtasmindailyRCP85">ST_CATHARINES_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_CATHARINES_POWER_GLENtasmindailyRCP85">ST_CATHARINES_POWER_GLEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_THOMAS_WPCPtasmindailyRCP85">ST_THOMAS_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_ALBERTtasmindailyRCP85">ST_ALBERT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#STRATFORD_WWTPtasmindailyRCP85">STRATFORD_WWTP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#STRATHROYtasmindailyRCP85">STRATHROY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SUDBURY_AtasmindailyRCP85">SUDBURY_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TARAtasmindailyRCP85">TARA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#THEDFORDtasmindailyRCP85">THEDFORD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#THORNBURY_SLAMAtasmindailyRCP85">THORNBURY_SLAMA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TIMMINS_VICTOR_POWER_AtasmindailyRCP85">TIMMINS_VICTOR_POWER_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTOtasmindailyRCP85">TORONTO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTO_BUTTONVILLE_AtasmindailyRCP85">TORONTO_BUTTONVILLE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTO_LESTER_BtasmindailyRCP85">TORONTO_LESTER_B</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TRANQUILLO_RIDGEtasmindailyRCP85">TRANQUILLO_RIDGE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TRENTON_AtasmindailyRCP85">TRENTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TYRONEtasmindailyRCP85">TYRONE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#UDORAtasmindailyRCP85">UDORA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#VINELAND_RITTENHOUSEtasmindailyRCP85">VINELAND_RITTENHOUSE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WAWA_AtasmindailyRCP85">WAWA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WELLANDtasmindailyRCP85">WELLAND</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WHITEFISH_LAKEtasmindailyRCP85">WHITEFISH_LAKE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WIARTON_AtasmindailyRCP85">WIARTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WINDSOR_AtasmindailyRCP85">WINDSOR_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOODBRIDGEtasmindailyRCP85">WOODBRIDGE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOODSTOCKtasmindailyRCP85">WOODSTOCK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOOLERtasmindailyRCP85">WOOLER</a></span>
+                  </li>
+                </ul>
+              </li>
+              <li data-options="state:'closed'">
+              <span>pr</span>
+                <ul>
+                  <li>
+                  <span><a href="#AJAXprdailyRCP85">AJAX</a></span>
+                  </li>				
+                  <li>
+                  <span><a href="#ALBION_FIELD_CENTREprdailyRCP85">ALBION_FIELD_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ALLISTON_NELSONprdailyRCP85">ALLISTON_NELSON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#AMHERSTBURGprdailyRCP85">AMHERSTBURG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ARNPRIOR_GRANDONprdailyRCP85">ARNPRIOR_GRANDON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#AVONMOREprdailyRCP85">AVONMORE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BARRIE_WPCCprdailyRCP85">BARRIE_WPCC</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BARWICKprdailyRCP85">BARWICK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BEATRICE_2prdailyRCP85">BEATRICE_2</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BELLEVILLEprdailyRCP85">BELLEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BLYTHprdailyRCP85">BLYTH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BOWMANVILLE_MOSTERTprdailyRCP85">BOWMANVILLE_MOSTERT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BRADFORD_MUCK_RESEARCHprdailyRCP85">BRADFORD_MUCK_RESEARCH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BRANTFORD_MOEprdailyRCP85">BRANTFORD_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BROCKVILLE_PCCprdailyRCP85">BROCKVILLE_PCC</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BURKETON_MCLAUGHLINprdailyRCP85">BURKETON_MCLAUGHLIN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#BURLINGTON_TSprdailyRCP85">BURLINGTON_TS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CAMERON_FALLSprdailyRCP85">CAMERON_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CENTREVILLEprdailyRCP85">CENTREVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHALK_RIVER_AECLprdailyRCP85">CHALK_RIVER_AECL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHAPLEAU_AprdailyRCP85">CHAPLEAU_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHATHAM_WPCPprdailyRCP85">CHATHAM_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CHATSWORTHprdailyRCP85">CHATSWORTH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COBOURG_STPprdailyRCP85">COBOURG_STP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COMBERMEREprdailyRCP85">COMBERMERE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CONISTON_STPprdailyRCP85">CONISTON_STP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COOKSTOWNprdailyRCP85">COOKSTOWN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CORNWALLprdailyRCP85">CORNWALL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#COURTRIGHTprdailyRCP85">COURTRIGHT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CRESSYprdailyRCP85">CRESSY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#CULLODEN_EASEYprdailyRCP85">CULLODEN_EASEY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DALHOUSIE_MILLSprdailyRCP85">DALHOUSIE_MILLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DASHWOODprdailyRCP85">DASHWOOD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DELHI_CDAprdailyRCP85">DELHI_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DORSET_MOEprdailyRCP85">DORSET_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRESDENprdailyRCP85">DRESDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRUMMOND_CENTREprdailyRCP85">DRUMMOND_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRYDENprdailyRCP85">DRYDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DRYDEN_AprdailyRCP85">DRYDEN_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DUNCHURCHprdailyRCP85">DUNCHURCH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DURHAMprdailyRCP85">DURHAM</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#DWIGHTprdailyRCP85">DWIGHT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EARLTON_AprdailyRCP85">EARLTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EGBERT_CAREprdailyRCP85">EGBERT_CARE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EMO_RADBOURNEprdailyRCP85">EMO_RADBOURNE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ESSA_ONT_HYDROprdailyRCP85">ESSA_ONT_HYDRO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#EXETERprdailyRCP85">EXETER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FERGUS_SHAND_DAMprdailyRCP85">FERGUS_SHAND_DAM</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FLINTprdailyRCP85">FLINT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FOLDENSprdailyRCP85">FOLDENS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FORT_ERIEprdailyRCP85">FORT_ERIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#FORT_FRANCES_AprdailyRCP85">FORT_FRANCES_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GEORGETOWN_WWTPprdailyRCP85">GEORGETOWN_WWTP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GERALDTON_AprdailyRCP85">GERALDTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLEN_ALLANprdailyRCP85">GLEN_ALLAN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLEN_GORDONprdailyRCP85">GLEN_GORDON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GLENBURNIEprdailyRCP85">GLENBURNIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#GODFREYprdailyRCP85">GODFREY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAGERSVILLEprdailyRCP85">HAGERSVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HALIBURTON_3prdailyRCP85">HALIBURTON_3</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAMILTON_AprdailyRCP85">HAMILTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HAMILTON_RBGprdailyRCP85">HAMILTON_RBG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HANOVERprdailyRCP85">HANOVER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HARTINGTON_IHDprdailyRCP85">HARTINGTON_IHD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#HUNTSVILLE_WPCPprdailyRCP85">HUNTSVILLE_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ILDERTON_BEAR_CREEKprdailyRCP85">ILDERTON_BEAR_CREEK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ISLAND_FALLSprdailyRCP85">ISLAND_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#JANETVILLEprdailyRCP85">JANETVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KAPUSKASING_AprdailyRCP85">KAPUSKASING_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KAPUSKASING_CDAprdailyRCP85">KAPUSKASING_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KEMPTVILLEprdailyRCP85">KEMPTVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KENORA_AprdailyRCP85">KENORA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KING_SMOKE_TREEprdailyRCP85">KING_SMOKE_TREE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KINGSTON_PUMPING_STATIONprdailyRCP85">KINGSTON_PUMPING_STATION</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#KINGSVILLE_MOEprdailyRCP85">KINGSVILLE_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LINDSAY_FROSTprdailyRCP85">LINDSAY_FROST</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LONDON_AIRPORTprdailyRCP85">LONDON_AIRPORT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#LYNDHURST_SHAWMEREprdailyRCP85">LYNDHURST_SHAWMERE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MADAWASKAprdailyRCP85">MADAWASKA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MASSEYprdailyRCP85">MASSEY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MIDDLEPORT_TSprdailyRCP85">MIDDLEPORT_TS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MIDLAND_WATERprdailyRCP85">MIDLAND_WATER</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MILLGROVEprdailyRCP85">MILLGROVE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MINDENprdailyRCP85">MINDEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MINE_CENTREprdailyRCP85">MINE_CENTRE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MONETVILLEprdailyRCP85">MONETVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MOOSONEE_UAprdailyRCP85">MOOSONEE_UA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MORRISBURGprdailyRCP85">MORRISBURG</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MOUNTAINVIEWprdailyRCP85">MOUNTAINVIEW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#MUSKOKA_AprdailyRCP85">MUSKOKA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NEW_GLASGOWprdailyRCP85">NEW_GLASGOW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NIAGARA_FALLS_NPCSHprdailyRCP85">NIAGARA_FALLS_NPCSH</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#NORTH_BAY_AprdailyRCP85">NORTH_BAY_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OAKVILLE_SOUTHEAST_WPCPprdailyRCP85">OAKVILLE_SOUTHEAST_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ORANGEVILLE_MOEprdailyRCP85">ORANGEVILLE_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OSHAWA_WPCPprdailyRCP85">OSHAWA_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OTTAWA_CDAprdailyRCP85">OTTAWA_CDA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OTTAWA_MACDONALDprdailyRCP85">OTTAWA_MACDONALD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#OWEN_SOUND_MOEprdailyRCP85">OWEN_SOUND_MOE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETERBOROUGH_AprdailyRCP85">PETERBOROUGH_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETERBOROUGH_TRENT_UprdailyRCP85">PETERBOROUGH_TRENT_U</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PETROLIA_TOWNprdailyRCP85">PETROLIA_TOWN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PICKLE_LAKE_AprdailyRCP85">PICKLE_LAKE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORCUPINE_ONT_HYDROprdailyRCP85">PORCUPINE_ONT_HYDRO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORT_COLBORNEprdailyRCP85">PORT_COLBORNE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PORT_DALHOUSIEprdailyRCP85">PORT_DALHOUSIE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#POWASSANprdailyRCP85">POWASSAN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PRESTONprdailyRCP85">PRESTON</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#PROTON_STATIONprdailyRCP85">PROTON_STATION</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RAWSON_LAKEprdailyRCP85">RAWSON_LAKE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RED_LAKE_AprdailyRCP85">RED_LAKE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RENFREWprdailyRCP85">RENFREW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RICHMOND_HILLprdailyRCP85">RICHMOND_HILL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RIDGEVILLEprdailyRCP85">RIDGEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ROSEVILLEprdailyRCP85">ROSEVILLE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RUSKVIEWprdailyRCP85">RUSKVIEW</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#RUSSELLprdailyRCP85">RUSSELL</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SARNIA_AIRPORTprdailyRCP85">SARNIA_AIRPORT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SAULT_STE_MARIE_2prdailyRCP85">SAULT_STE_MARIE_2</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SAULT_STE_MARIE_AprdailyRCP85">SAULT_STE_MARIE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SHANTY_BAYprdailyRCP85">SHANTY_BAY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SIOUX_LOOKOUT_AprdailyRCP85">SIOUX_LOOKOUT_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SMOKY_FALLSprdailyRCP85">SMOKY_FALLS</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SOUTH_MOUNTAINprdailyRCP85">SOUTH_MOUNTAIN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_CATHARINES_AprdailyRCP85">ST_CATHARINES_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_CATHARINES_POWER_GLENprdailyRCP85">ST_CATHARINES_POWER_GLEN</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_THOMAS_WPCPprdailyRCP85">ST_THOMAS_WPCP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#ST_ALBERTprdailyRCP85">ST_ALBERT</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#STRATFORD_WWTPprdailyRCP85">STRATFORD_WWTP</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#STRATHROYprdailyRCP85">STRATHROY</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#SUDBURY_AprdailyRCP85">SUDBURY_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TARAprdailyRCP85">TARA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#THEDFORDprdailyRCP85">THEDFORD</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#THORNBURY_SLAMAprdailyRCP85">THORNBURY_SLAMA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TIMMINS_VICTOR_POWER_AprdailyRCP85">TIMMINS_VICTOR_POWER_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTOprdailyRCP85">TORONTO</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTO_BUTTONVILLE_AprdailyRCP85">TORONTO_BUTTONVILLE_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TORONTO_LESTER_BprdailyRCP85">TORONTO_LESTER_B</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TRANQUILLO_RIDGEprdailyRCP85">TRANQUILLO_RIDGE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TRENTON_AprdailyRCP85">TRENTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#TYRONEprdailyRCP85">TYRONE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#UDORAprdailyRCP85">UDORA</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#VINELAND_RITTENHOUSEprdailyRCP85">VINELAND_RITTENHOUSE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WAWA_AprdailyRCP85">WAWA_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WELLANDprdailyRCP85">WELLAND</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WHITEFISH_LAKEprdailyRCP85">WHITEFISH_LAKE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WIARTON_AprdailyRCP85">WIARTON_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WINDSOR_AprdailyRCP85">WINDSOR_A</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOODBRIDGEprdailyRCP85">WOODBRIDGE</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOODSTOCKprdailyRCP85">WOODSTOCK</a></span>
+                  </li>
+                  <li>
+                  <span><a href="#WOOLERprdailyRCP85">WOOLER</a></span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+											</li>
+											<li data-options="state:'closed'">
+										    <span>Grids Daily and Averages</span>
+											<ul>
+
+												<li data-options="state:'closed'">
+												<span>Daily</span>
+													<ul>
+														<li><span><a href="#DailyTmDataOnGrid">tas</a></span></li>
+														<li><span><a href="#DailyTxDataOnGrid">tasmax </a></span></li>
+														<li><span><a href="#DailyTnDataOnGrid">tasmin</a></span></li>
+														<li><span><a href="#DailyPrDataOnGrid">pr</a></span></li>
+													</ul>
+												</li>
+												<li data-options="state:'closed'">
+												<span>Averages</span>
+													<ul>
+														<li><span><a href="#AverageTmDataOnGrid">tas</a></span></li>
+														<li><span><a href="#AverageTxDataOnGrid">tasmax </a></span></li>
+														<li><span><a href="#AverageTnDataOnGrid">tasmin</a></span></li>
+														<li><span><a href="#AveragePrDataOnGrid">pr</a></span></li>
+													</ul>
+												</li>
+												<li><span><a href="#indexesEnsembleMeanGrids">Ensemble Mean</a></span></li>													
+											</ul>
+											</li>
+										</ul>
+										</li>
+										</ul>
+									</li>
+
+
+
+						
+					</ul>
+				</li>			
+		
+		
+		
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_documents.htm"><i class="fa fa-file-image-o"  style="color:red;"></i> <span>Documents</span></a>
+				</li>
+				<li>
+				    <a href="#faq"><i class="fa fa-info-circle"  style="color:red;"></i> <span>FAQ</span></b></a>
+				</li>			
+			  </ul>
+			</div>
+
+		<div class="pull-right"> 
+<img src="http://lamps.math.yorku.ca/WorldClimate/graph/LampsYorkuLogo.gif" class="img-responsive" style="width:155px;height:50px;">
+</div>		   
+		   </div>
+		</div>	
+	<!--------side menu tree end----------------------------------------------------->		
+
+			
+		<div id="main-wrapper" class="col-md-10 col-sm-9 col-xs-12 pull-right">
+			<div id="main">
+
+
+                <div>
+				<ng-view></ng-view>
+				<!--div ng-view></div--> 
+				
+								
+                </div>
+			</div>
+			
+		</div>
+		
+
+	</div>
+	<!--
+	div ng-include="'botomNavBar.html'"></div
+<div class="navbar  navbar-inverse navbar-fixed-bottom" style="margin-top: 100px;margin-botom: 30px;background-color:#b1d261;">	
+	-->
+<div class="navbar  navbar-inverse navbar-fixed-bottom" style="margin-top: 100px;background-color:#b1d261;">
+    <div>
+		<ul class="nav navbar-nav">
+				<li><a href="https://www.ontario.ca/page/ministry-environment-and-climate-change">Funded by: MECP(former MOECC)</a></li>
+		</ul>
+		<ul class="nav navbar-nav pull-right">
+			    
+				<li><a href="http://www.lamps.yorku.ca/">©LAMPS,&nbsp;York University</a></li>
+		</ul>
+    </div>
+</div>
+
+</div>
+
+
+
+	<script src="app_router_data.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>		
+	<!--script src="https://github.com/pablojim/highcharts-ng/blob/master/dist/highcharts-ng.min.js"></script-->
+<!--Analytics code-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61516126-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!--
+<script>
+  (function() {
+    var cx = '006097446396650386672:fsvqimtqsuc';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<gcse:search></gcse:search>
+-->
+</body>
+</html>

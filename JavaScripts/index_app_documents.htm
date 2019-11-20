@@ -1,0 +1,934 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Ontario Climate Trends and Variations Bulletin – 2018</title>
+    <meta charset="utf-8">
+	<meta name="author" content="Dr. Ziwang Deng, Department of Mathematics & Statistics,York University">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://www.w3schools.com/lib/w3.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jexcel/1.3.4/js/jquery.jexcel.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jexcel/1.3.4/css/jquery.jexcel.min.css" type="text/css" />
+	
+    <script type="text/javascript" src="assets/lib/jeasyui/jquery.easyui.min.js"></script>	
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+	p {font-size: 100%;}
+	h1 {color:#008080;}
+	#header {background-color: #0099FF}
+	//#header {background-image: url("bubble_04.png");}
+  .navbar {
+      margin-bottom: 0;
+	  padding-bottom: 5px;
+      background-color: #0099FF;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #0099FF !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+ #wrapper {
+	margin-top: 30px;
+ }
+ #sidebar-wrapper {
+	padding: 10px 0 0px 0;
+ }
+	</style>
+</head>
+
+<body ng-app="app_documents" ng-controller="TreeMenuCtrl">
+<div class="container">
+<!-----------------head nav start-------------------------------->
+	<!--div ng-include="'headNavBar.html'"></div-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+
+
+    <div class="navbar-header">
+
+        <a class="navbar-brand" href="http://lamps.math.yorku.ca/OntarioClimate/index_v18.htm">
+            <span class="glyphicon glyphicon-home" style="color:red;"></span> <span>OCDP</span>
+        </a>
+    </div>
+    <div id="myNavbar">   
+        <ul class="nav navbar-nav">
+            <li>
+			  <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_maps.htm"><span class="glyphicon glyphicon-globe" style="color:red;"></span><span>Maps</a>
+            </li>
+            <li>
+			  <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_timeseries.htm"><i class="fa fa-line-chart" style="color:red;"></i><span>Time-series</a>
+            </li>			
+            <li class="hidden-xs">
+			    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_data.htm"><span class="glyphicon glyphicon-save" style="color:red;"></span><span>Data</span></a>
+            </li>			
+            <li class="hidden-xs">
+              <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_documents.htm"><i class="fa fa-file-image-o"  style="color:red;"></i> <span>Documents</span></a>
+            </li>
+            <li class="hidden-xs">
+              <a href="#faq"><i class="fa fa-info-circle"  style="color:red;"></i> <span>FAQ</span></b></a>
+            </li>			
+        </ul>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li>
+                <a href="#ClimateChangeTeam"><span class="glyphicon glyphicon-user"></span> Team</a>
+            </li>
+
+		    <!--li  style="margin-right:30px;">
+			    <a href="http://lamps.math.yorku.ca/OntarioClimate/searchPage.html"><span class="glyphicon glyphicon-search"></span> Search</a>
+			</li-->
+        </ul>
+
+	</div>
+	</div>
+</nav>
+	
+
+<!-----------------head nav end-------------------------------->
+
+
+	<div  class="container" id="wrapper">
+	<!--------side menu tree start----------------------------------------------------->
+		<div id="sidebar-wrapper" class="col-md-2 col-sm-3 hidden-xs">
+		<!--
+                  <h6 class="lead text-info text-center"><small>Ontario Climate Information</small></h6>
+		-->
+			<div id="sidebar" class="well well-sm">
+		  
+		  
+			<!--h6 class="lead text-info text-center"><small>Ontario Climate Information</small></h6-->
+		   
+
+			<br>
+			<div>
+			<script>
+			  (function() {
+				var cx = '006097446396650386672:i1sl2siau28';
+				var gcse = document.createElement('script');
+				gcse.type = 'text/javascript';
+				gcse.async = true;
+				gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(gcse, s);
+			  })();
+			</script>
+			<gcse:searchbox-only></gcse:searchbox-only>
+	        </div>			
+	<!--The tree menu start{{DocumentsState}}-->	
+
+			<div class="easyui-panel" style="padding:5px">
+			  <ul class="easyui-tree" data-options="animate:true,lines:true">
+			  
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_maps.htm"><span class="glyphicon glyphicon-globe" style="color:red;"></span><span>Maps</span></a>
+				</li>			  
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_timeseries.htm"><i class="fa fa-line-chart" style="color:red;"></i><span>Time-series</span></a>
+				</li>			  
+				<li>
+					<a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_data.htm"><span class="glyphicon glyphicon-save" style="color:red;"></span><span>Data</span></a>
+				</li>		
+		
+				<li data-options="state:'open'">
+					<span>Documents</span>
+					<ul>
+						<li data-options="state:'closed'">
+							<span>Reports</span>
+								<ul>
+								    <li>
+								        <span><a href="http://lamps.math.yorku.ca/OntarioClimate/ClimateTrendsandVariationsBulletin/index.htm">Ontario Climate Trends and Variations Bulletin – 2018</a></span>
+								    </li>
+								    <li>
+										<span><a href="http://lamps.math.yorku.ca/OntarioClimate/GLB/index.htm">Projected T-P Changes over the Great Lakes Basin (updated)</a></span>
+									</li>
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/OntarioClimate/PrecipitationTrends/index.htm">Trends of Precipitation in Ontario</a></span>
+									</li>								
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/TmFrequency/">Ontario Has Been Getting Hotter</a></span>
+									</li>							
+								
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/OntarioClimate/CRU401/timeSeries_tmtntxpr_00.html">Where Year 2016 Stands in Ontario's Changing Climate</a></span>
+									</li>										
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/HighResolutionClimateChangeProjectionsforOntario.pdf">High Resolution Climate Change Projections for Ontario (CMOS 2017, Toronto)</a></span>
+									</li>								
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/DecadalAverageSummerTemperatureTrends.pdf">Trend of heat wave duration</a></span>
+									</li>								
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/AnUpdateon2016ClimaticStats4Ontario.pdf">An update on 2016 climate</a></span>
+									</li>								
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/Jan2017OntarioClimateUpdate.pdf">Jan 2017 Ontario climate update</a></span>
+									</li>
+									<li>
+									    <span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/TemperatureChangefor1900to2100relativeto1986-2005.pdf">Tm changes 1900-2100</a></span>
+									</li>
+									<li>
+									    <span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/PrecipitationChangefor1900to2100relativeto1986-2005.pdf">Pr changes 1900-2100</a></span>
+									</li>			
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/Projection_Precipitation_Change_Ontario_2050s.pdf">Pr-2050s-RCP8.5</a></span>
+									</li>
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/Projection_Temperature_Change_Ontario_2050s.pdf">T-2050s-RCP8.5</a></span>
+									</li>
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/ProjectedAnnualMeanTemperatureChange_v01.pdf">Great Lake Basin Tm</a></span>
+									</li>
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/PDFs/ProjectedAnnualTotalPr_2080s_v01.pdf">Great Lake Basin Pr</a></span>
+									</li>				
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/WorldClimate/OntarioClimate/FFS/">Ontario Frost-Free-Season</a></span>
+									</li>
+									<li>
+										<span><a href="http://lamps.math.yorku.ca/OntarioClimate/buildingCode/index.html">Building Code</a></span>
+									</li>
+									<li>
+                                    	<span><a href="http://lamps.math.yorku.ca/OntarioClimate/assets/img/plot/OntarioClimateChangeTrend.png">Historical and Projected Climate Trends over Ontario</a></span>								
+									</li>
+								</ul>
+						</li>
+						<li data-options="state:'closed'">
+							<span>Factsheets</span>
+								<ul>
+									<li>
+										<span><a href="#FactSheetAverages">Provincial Averages</a></span>
+									</li>
+									<li  data-options="state:'closed'">
+										<span>Regional Averages (50) </span>
+										<ul>
+											<li>
+										        <span><a href="#summaryofALGOMA">ALGOMA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofBRANT">BRANT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofBRUCE">BRUCE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofCOCHRANE">COCHRANE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofDUFFERIN">DUFFERIN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofDURHAM">DURHAM</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofELGIN">ELGIN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofESSEX">ESSEX</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofFRONTENAC">FRONTENAC</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofGREY">GREY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofHALDIMAND-NORFOLK">HALDIMAND-NORFOLK</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofHALIBURTON">HALIBURTON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofHALTON">HALTON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofHAMILTON-WENTWORTH">HAMILTON-WENTWORTH</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofHASTINGS">HASTINGS</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofHURON">HURON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofIsland-county-stat">Island-county-stat</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofKENORA">KENORA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofKENT">KENT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofLAMBTON">LAMBTON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofLANARK">LANARK</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofLEEDSandGRENVILLE">LEEDSandGRENVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofLENNOXandADDINGTON">LENNOXandADDINGTON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofMANITOULIN">MANITOULIN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofMETROPOLITAN-TORONTO">METROPOLITAN-TORONTO</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofMIDDLESEX">MIDDLESEX</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofMUSKOKA">MUSKOKA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofNIAGARA">NIAGARA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofNIPISSING">NIPISSING</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofNORTHUMBERLAND">NORTHUMBERLAND</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofOTTAWA-CARLTON">OTTAWA-CARLTON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofOXFORD">OXFORD</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofPARRY-SOUND">PARRY-SOUND</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofPEEL">PEEL</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofPERTH">PERTH</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofPETERBOROUGH">PETERBOROUGH</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofPRESCOTTandRUSSELL">PRESCOTTandRUSSELL</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofPRINCE-EDWARD">PRINCE-EDWARD</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofRAINY-RIVER">RAINY-RIVER</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofRENFREW">RENFREW</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofSIMCOE">SIMCOE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofSTORMONT-DUNDASandGL">STORMONT-DUNDASandGL</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofSUDBURY">SUDBURY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofSUDBURY-REGION">SUDBURY-REGION</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofTHUNDER-BAY">THUNDER-BAY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofTIMISKAMING">TIMISKAMING</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofVICTORIA">VICTORIA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofWATERLOO">WATERLOO</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofWELLINGTON">WELLINGTON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofYORK">YORK</a></span>
+										    </li>
+										</ul>
+									</li>
+									<li data-option="state:'closed'">
+									    <span>Municipal averages (150)</span>
+										<ul>
+											<li>
+										        <span><a href="#summaryofstationAJAX">AJAX</a></span>
+										    </li>									
+											<li>
+										        <span><a href="#summaryofstationALBION_FIELD_CENTRE">ALBION_FIELD_CENTRE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationALLISTON_NELSON">ALLISTON_NELSON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationAMHERSTBURG">AMHERSTBURG</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationARNPRIOR_GRANDON">ARNPRIOR_GRANDON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationAVONMORE">AVONMORE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBARRIE_WPCC">BARRIE_WPCC</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBARWICK">BARWICK</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBEATRICE_2">BEATRICE_2</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBELLEVILLE">BELLEVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBLYTH">BLYTH</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBOWMANVILLE_MOSTERT">BOWMANVILLE_MOSTERT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBRADFORD_MUCK_RESEARCH">BRADFORD_MUCK_RESEARCH</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBRANTFORD_MOE">BRANTFORD_MOE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBROCKVILLE_PCC">BROCKVILLE_PCC</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBURKETON_MCLAUGHLIN">BURKETON_MCLAUGHLIN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationBURLINGTON_TS">BURLINGTON_TS</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCAMERON_FALLS">CAMERON_FALLS</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCENTREVILLE">CENTREVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCHALK_RIVER_AECL">CHALK_RIVER_AECL</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCHAPLEAU_A">CHAPLEAU_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCHATHAM_WPCP">CHATHAM_WPCP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCHATSWORTH">CHATSWORTH</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCOBOURG_STP">COBOURG_STP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCOMBERMERE">COMBERMERE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCONISTON_STP">CONISTON_STP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCOOKSTOWN">COOKSTOWN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCORNWALL">CORNWALL</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCOURTRIGHT">COURTRIGHT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCRESSY">CRESSY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationCULLODEN_EASEY">CULLODEN_EASEY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDALHOUSIE_MILLS">DALHOUSIE_MILLS</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDASHWOOD">DASHWOOD</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDELHI_CDA">DELHI_CDA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDORSET_MOE">DORSET_MOE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDRESDEN">DRESDEN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDRUMMOND_CENTRE">DRUMMOND_CENTRE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDRYDEN">DRYDEN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDRYDEN_A">DRYDEN_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDUNCHURCH">DUNCHURCH</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDURHAM">DURHAM</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationDWIGHT">DWIGHT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationEARLTON_A">EARLTON_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationEGBERT_CARE">EGBERT_CARE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationEMO_RADBOURNE">EMO_RADBOURNE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationESSA_ONT_HYDRO">ESSA_ONT_HYDRO</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationEXETER">EXETER</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationFERGUS_SHAND_DAM">FERGUS_SHAND_DAM</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationFLINT">FLINT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationFOLDENS">FOLDENS</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationFORT_ERIE">FORT_ERIE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationFORT_FRANCES_A">FORT_FRANCES_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationGEORGETOWN_WWTP">GEORGETOWN_WWTP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationGERALDTON_A">GERALDTON_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationGLEN_ALLAN">GLEN_ALLAN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationGLEN_GORDON">GLEN_GORDON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationGLENBURNIE">GLENBURNIE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationGODFREY">GODFREY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationHAGERSVILLE">HAGERSVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationHALIBURTON_3">HALIBURTON_3</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationHAMILTON_A">HAMILTON_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationHAMILTON_RBG">HAMILTON_RBG</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationHANOVER">HANOVER</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationHARTINGTON_IHD">HARTINGTON_IHD</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationHUNTSVILLE_WPCP">HUNTSVILLE_WPCP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationILDERTON_BEAR_CREEK">ILDERTON_BEAR_CREEK</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationISLAND_FALLS">ISLAND_FALLS</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationJANETVILLE">JANETVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationKAPUSKASING_A">KAPUSKASING_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationKAPUSKASING_CDA">KAPUSKASING_CDA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationKEMPTVILLE">KEMPTVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationKENORA_A">KENORA_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationKING_SMOKE_TREE">KING_SMOKE_TREE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationKINGSTON_PUMPING_STATION">KINGSTON_PUMPING_STATION</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationKINGSVILLE_MOE">KINGSVILLE_MOE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationLINDSAY_FROST">LINDSAY_FROST</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationLONDON_AIRPORT">LONDON_AIRPORT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationLYNDHURST_SHAWMERE">LYNDHURST_SHAWMERE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMADAWASKA">MADAWASKA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMASSEY">MASSEY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMIDDLEPORT_TS">MIDDLEPORT_TS</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMIDLAND_WATER">MIDLAND_WATER</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMILLGROVE">MILLGROVE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMINDEN">MINDEN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMINE_CENTRE">MINE_CENTRE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMONETVILLE">MONETVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMOOSONEE_UA">MOOSONEE_UA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMORRISBURG">MORRISBURG</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMOUNTAINVIEW">MOUNTAINVIEW</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationMUSKOKA_A">MUSKOKA_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationNEW_GLASGOW">NEW_GLASGOW</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationNIAGARA_FALLS_NPCSH">NIAGARA_FALLS_NPCSH</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationNORTH_BAY_A">NORTH_BAY_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationOAKVILLE_SOUTHEAST_WPCP">OAKVILLE_SOUTHEAST_WPCP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationORANGEVILLE_MOE">ORANGEVILLE_MOE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationOSHAWA_WPCP">OSHAWA_WPCP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationOTTAWA_CDA">OTTAWA_CDA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationOTTAWA_MACDONALD">OTTAWA_MACDONALD</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationOWEN_SOUND_MOE">OWEN_SOUND_MOE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPETERBOROUGH_A">PETERBOROUGH_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPETERBOROUGH_TRENT_U">PETERBOROUGH_TRENT_U</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPETROLIA_TOWN">PETROLIA_TOWN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPICKLE_LAKE_A">PICKLE_LAKE_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPORCUPINE_ONT_HYDRO">PORCUPINE_ONT_HYDRO</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPORT_COLBORNE">PORT_COLBORNE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPORT_DALHOUSIE">PORT_DALHOUSIE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPOWASSAN">POWASSAN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPRESTON">PRESTON</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationPROTON_STATION">PROTON_STATION</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationRAWSON_LAKE">RAWSON_LAKE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationRED_LAKE_A">RED_LAKE_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationRENFREW">RENFREW</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationRICHMOND_HILL">RICHMOND_HILL</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationRIDGEVILLE">RIDGEVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationROSEVILLE">ROSEVILLE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationRUSKVIEW">RUSKVIEW</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationRUSSELL">RUSSELL</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSARNIA_AIRPORT">SARNIA_AIRPORT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSAULT_STE_MARIE_2">SAULT_STE_MARIE_2</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSAULT_STE_MARIE_A">SAULT_STE_MARIE_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSHANTY_BAY">SHANTY_BAY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSIOUX_LOOKOUT_A">SIOUX_LOOKOUT_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSMOKY_FALLS">SMOKY_FALLS</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSOUTH_MOUNTAIN">SOUTH_MOUNTAIN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationST_CATHARINES_A">ST_CATHARINES_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationST_CATHARINES_POWER_GLEN">ST_CATHARINES_POWER_GLEN</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationST_THOMAS_WPCP">ST_THOMAS_WPCP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationST_ALBERT">ST_ALBERT</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSTRATFORD_WWTP">STRATFORD_WWTP</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSTRATHROY">STRATHROY</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationSUDBURY_A">SUDBURY_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTARA">TARA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTHEDFORD">THEDFORD</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTHORNBURY_SLAMA">THORNBURY_SLAMA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTIMMINS_VICTOR_POWER_A">TIMMINS_VICTOR_POWER_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTORONTO">TORONTO</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTORONTO_BUTTONVILLE_A">TORONTO_BUTTONVILLE_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTORONTO_LESTER_B">TORONTO_LESTER_B</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTRANQUILLO_RIDGE">TRANQUILLO_RIDGE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTRENTON_A">TRENTON_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationTYRONE">TYRONE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationUDORA">UDORA</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationVINELAND_RITTENHOUSE">VINELAND_RITTENHOUSE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationWAWA_A">WAWA_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationWELLAND">WELLAND</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationWHITEFISH_LAKE">WHITEFISH_LAKE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationWIARTON_A">WIARTON_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationWINDSOR_A">WINDSOR_A</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationWOODBRIDGE">WOODBRIDGE</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationWOODSTOCK">WOODSTOCK</a></span>
+										    </li>
+											<li>
+										        <span><a href="#summaryofstationWOOLER">WOOLER</a></span>
+										    </li>										
+										</ul>
+									</li>										
+									
+								</ul>						
+						</li>
+						<li data-options="state:'closed'">
+							<span>Gallery</span>
+								<ul>
+									<li>
+										<span><a href="#galleryTimeseris">TimeSeries</a></span>
+									</li>
+									<li>
+										<span><a href="#galleryMaps">Maps(coming soon)</a></span>
+									</li>									
+								</ul>						
+						</li>					
+						
+					</ul>
+				</li>			
+
+				<li>
+				    <a href="#faq"><i class="fa fa-info-circle"  style="color:red;"></i> <span>FAQ</span></b></a>
+				</li>			
+			  </ul>
+			</div>
+
+		<div class="pull-right"> 
+<img src="http://lamps.math.yorku.ca/WorldClimate/graph/LampsYorkuLogo.gif" class="img-responsive" style="width:155px;height:50px;">
+</div>		   
+		   </div>
+		</div>	
+	<!--------side menu tree end----------------------------------------------------->		
+
+			
+		<div id="main-wrapper" class="col-md-10 col-sm-9 col-xs-12 pull-right">
+			<div id="main">
+
+
+                <div>
+				<ng-view></ng-view>
+				<!--div ng-view></div-->
+								
+                </div>
+			</div>
+			
+		</div>
+		
+
+	</div>
+	<!--
+	div ng-include="'botomNavBar.html'"></div
+<div class="navbar  navbar-inverse navbar-fixed-bottom" style="margin-top: 100px;margin-botom: 30px;background-color:#b1d261;">	
+	-->
+<div class="navbar  navbar-inverse navbar-fixed-bottom" style="margin-top: 100px;background-color:#b1d261;">
+    <div>
+		<ul class="nav navbar-nav">
+				<li><a href="https://www.ontario.ca/page/ministry-environment-and-climate-change">Funded by: MECP(former MOECC)</a></li>
+		</ul>
+		<ul class="nav navbar-nav pull-right">
+			    
+				<li><a href="http://www.lamps.yorku.ca/">©LAMPS,&nbsp;York University</a></li>
+		</ul>
+    </div>
+</div>
+
+</div>
+
+
+	
+	<script src="app_router_documents.js"></script>
+	<!--script src="https://github.com/pablojim/highcharts-ng/blob/master/dist/highcharts-ng.min.js"></script-->
+<!--Analytics code-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61516126-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!--
+<script>
+  (function() {
+    var cx = '006097446396650386672:fsvqimtqsuc';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<gcse:search></gcse:search>
+-->
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Ontario Climate Change Data Portal</title>
+    <meta charset="utf-8">
+	<meta name="author" content="Dr. Ziwang Deng, Department of Mathematics & Statistics,York University">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://www.w3schools.com/lib/w3.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/lib/jeasyui/jquery.easyui.min.js"></script>	
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+	p {font-size: 100%;}
+	h1 {color:#008080;}
+	#header {background-color: #0099FF}
+	//#header {background-image: url("bubble_04.png");}
+  .navbar {
+      margin-bottom: 0;
+	  padding-bottom: 5px;
+      background-color: #0099FF;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #0099FF !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+ #wrapper {
+	margin-top: 30px;
+ }
+ #sidebar-wrapper {
+	padding: 10px 0 0px 0;
+ }
+	</style>
+</head>
+
+<body ng-app="app_maps" ng-controller="TreeMenuCtrl">
+<div class="container">
+<!-----------------head nav start-------------------------------->
+	<!--div ng-include="'headNavBar.html'"></div-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+
+
+    <div class="navbar-header">
+
+        <a class="navbar-brand" href="http://lamps.math.yorku.ca/OntarioClimate/index_v18.htm">
+            <span class="glyphicon glyphicon-home" style="color:red;"></span> <span>OCDP</span>
+        </a>
+    </div>
+    <div id="myNavbar">   
+        <ul class="nav navbar-nav">
+            <li>
+			  <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_maps.htm"><span class="glyphicon glyphicon-globe" style="color:red;"></span><span>Maps</a>
+            </li>
+            <li>
+			  <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_timeseries.htm"><i class="fa fa-line-chart" style="color:red;"></i><span>Time-series</a>
+            </li>			
+            <li class="hidden-xs">
+			    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_data.htm"><span class="glyphicon glyphicon-save" style="color:red;"></span><span>Data</span></a>
+            </li>			
+            <li class="hidden-xs">
+              <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_documents.htm"><i class="fa fa-file-image-o"  style="color:red;"></i> <span>Documents</span></a>
+            </li>
+            <li class="hidden-xs">
+              <a href="#faq"><i class="fa fa-info-circle"  style="color:red;"></i> <span>FAQ</span></b></a>
+            </li>			
+        </ul>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li>
+                <a href="#ClimateChangeTeam"><span class="glyphicon glyphicon-user"></span> Team</a>
+            </li>
+
+		    <!--li  style="margin-right:30px;">
+			    <a href="http://lamps.math.yorku.ca/OntarioClimate/searchPage.html"><span class="glyphicon glyphicon-search"></span> Search</a>
+			</li-->
+        </ul>
+	</div>
+	</div>
+</nav>
+
+<!-----------------head nav end-------------------------------->
+
+
+	<div  class="container" id="wrapper">
+	<!--------side menu tree start----------------------------------------------------->
+		<div id="sidebar-wrapper" class="col-md-2 col-sm-3 hidden-xs">
+		<!--
+                  <h6 class="lead text-info text-center"><small>Ontario Climate Information</small></h6>
+		-->
+			<div id="sidebar" class="well well-sm">
+		  
+		  
+			<!--h6 class="lead text-info text-center"><small>Ontario Climate Information</small></h6-->
+		   
+
+	<br>
+			<div>
+			<script>
+			  (function() {
+				var cx = '006097446396650386672:i1sl2siau28';
+				var gcse = document.createElement('script');
+				gcse.type = 'text/javascript';
+				gcse.async = true;
+				gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(gcse, s);
+			  })();
+			</script>
+			<gcse:searchbox-only></gcse:searchbox-only>
+	        </div>	
+	<!--The tree menu start{{DocumentsState}}-->	
+
+			<div class="easyui-panel" style="padding:5px">
+			  <ul class="easyui-tree" data-options="animate:true,lines:true">
+				<li data-options="state:'open'">
+					<span>Maps</span>
+					<ul>
+		
+						<li data-options="state:'closed'">
+							<span>Mean Temperature</span>
+							<ul>
+								<li>
+									<span><a href="#TmAnnual">Annual Mean</a></span>
+									<!--span><a href="#TmAnnual">Annual Mean</a></span-->
+								</li>
+								<li data-options="state:'closed'">
+									<span>Seasonal Mean</span>
+									<ul>
+										<li>
+											<span><a href="#TmSpring">Spring</a></span>
+										</li>
+										<li>
+											<span><a href="#TmSummer">Summer</a></span>
+										</li>
+										<li>
+											<span><a href="#TmAutumn">Autumn</a></span>
+										</li>
+										<li>
+											<span><a href="#TmWinter">Winter</a></span>
+										</li>
+									</ul>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Monthly Mean</span>
+									<ul>
+										<li>
+											<span><a href="#Tm01">January</a></span>
+										</li>
+										<li>
+											<span><a href="#Tm02">February</a></span>
+										</li>
+										<li>
+											<span><a href="#Tm03">March</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tm04">April</a></span>
+										</li>
+										<li>
+											<span><a href="#Tm05">May</a></span>
+										</li>
+										<li>
+											<span><a href="#Tm06">June</a></span>
+										</li>
+										<li>
+											<span><a href="#Tm07">July</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tm08">August</a></span>
+										</li>
+										<li>
+											<span><a href="#Tm09">September</a></span>
+										</li>
+										<li>
+											<span><a href="#Tm10">October</a></span>
+										</li>
+										<li>
+											<span><a href="#Tm11">November</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tm12">December</a></span>
+										</li>									
+									</ul>
+								</li>
+								
+							</ul>
+						</li>
+
+						<li data-options="state:'closed'">
+							<span>Maximum Temperature</span>
+							<ul>
+								<li>
+									<span><a href="#TxAnnual">Annual Mean</a></span>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Seasonal Mean</span>
+									<ul>
+										<li>
+											<span><a href="#TxSpring">Spring</a></span>
+										</li>
+										<li>
+											<span><a href="#TxSummer">Summer</a></span>
+										</li>
+										<li>
+											<span><a href="#TxAutumn">Autumn</a></span>
+										</li>
+										<li>
+											<span><a href="#TxWinter">Winter</a></span>
+										</li>
+									</ul>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Monthly Mean</span>
+									<ul>
+										<li>
+											<span><a href="#Tx01">January</a></span>
+										</li>
+										<li>
+											<span><a href="#Tx02">February</a></span>
+										</li>
+										<li>
+											<span><a href="#Tx03">March</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tx04">April</a></span>
+										</li>
+										<li>
+											<span><a href="#Tx05">May</a></span>
+										</li>
+										<li>
+											<span><a href="#Tx06">June</a></span>
+										</li>
+										<li>
+											<span><a href="#Tx07">July</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tx08">August</a></span>
+										</li>
+										<li>
+											<span><a href="#Tx09">September</a></span>
+										</li>
+										<li>
+											<span><a href="#Tx10">October</a></span>
+										</li>
+										<li>
+											<span><a href="#Tx11">November</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tx12">December</a></span>
+										</li>									
+									</ul>
+								</li>
+								
+							</ul>
+						</li>
+
+						
+						<li data-options="state:'closed'">
+							<span>Minimum Temperature</span>
+							<ul>
+								<li>
+									<span><a href="#TnAnnual">Annual Mean</a></span>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Seasonal Mean</span>
+									<ul>
+										<li>
+											<span><a href="#TnSpring">Spring</a></span>
+										</li>
+										<li>
+											<span><a href="#TnSummer">Summer</a></span>
+										</li>
+										<li>
+											<span><a href="#TnAutumn">Autumn</a></span>
+										</li>
+										<li>
+											<span><a href="#TnWinter">Winter</a></span>
+										</li>
+									</ul>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Monthly Mean</span>
+									<ul>
+										<li>
+											<span><a href="#Tn01">January</a></span>
+										</li>
+										<li>
+											<span><a href="#Tn02">February</a></span>
+										</li>
+										<li>
+											<span><a href="#Tn03">March</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tn04">April</a></span>
+										</li>
+										<li>
+											<span><a href="#Tn05">May</a></span>
+										</li>
+										<li>
+											<span><a href="#Tn06">June</a></span>
+										</li>
+										<li>
+											<span><a href="#Tn07">July</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tn08">August</a></span>
+										</li>
+										<li>
+											<span><a href="#Tn09">September</a></span>
+										</li>
+										<li>
+											<span><a href="#Tn10">October</a></span>
+										</li>
+										<li>
+											<span><a href="#Tn11">November</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Tn12">December</a></span>
+										</li>									
+									</ul>
+								</li>
+								
+							</ul>
+						</li>
+
+						<li data-options="state:'closed'">
+							<span>Precipitation</span>
+							<ul>
+								<li>
+									<span><a href="#PrAnnual">Annual Mean</a></span>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Seasonal Mean</span>
+									<ul>
+										<li>
+											<span><a href="#PrSpring">Spring</a></span>
+										</li>
+										<li>
+											<span><a href="#PrSummer">Summer</a></span>
+										</li>
+										<li>
+											<span><a href="#PrAutumn">Autumn</a></span>
+										</li>
+										<li>
+											<span><a href="#PrWinter">Winter</a></span>
+										</li>
+									</ul>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Monthly Mean</span>
+									<ul>
+										<li>
+											<span><a href="#Pr01">January</a></span>
+										</li>
+										<li>
+											<span><a href="#Pr02">February</a></span>
+										</li>
+										<li>
+											<span><a href="#Pr03">March</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Pr04">April</a></span>
+										</li>
+										<li>
+											<span><a href="#Pr05">May</a></span>
+										</li>
+										<li>
+											<span><a href="#Pr06">June</a></span>
+										</li>
+										<li>
+											<span><a href="#Pr07">July</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Pr08">August</a></span>
+										</li>
+										<li>
+											<span><a href="#Pr09">September</a></span>
+										</li>
+										<li>
+											<span><a href="#Pr10">October</a></span>
+										</li>
+										<li>
+											<span><a href="#Pr11">November</a></span>
+
+										</li>
+										<li>
+											<span><a href="#Pr12">December</a></span>
+										</li>									
+									</ul>
+								</li>
+								
+							</ul>
+						</li>
+
+						<li data-options="state:'closed'">
+							<span>Climate Indices</span>
+							<ul>
+								<li data-options="state:'closed'">
+									<span>Extreme Hot</span>
+									<ul>
+										<li>
+											<span><a href="#SU">Su</a></span>
+										</li>
+										<li>
+											<span><a href="#TR">TR</a></span>
+										</li>
+										<li>
+											<span><a href="#TXx">TXx</a></span>
+										</li>
+										<li>
+											<span><a href="#TX90p">TX90p</a></span>
+										</li>
+										<li>
+											<span><a href="#TN90p">Tn90p</a></span>
+										</li>										
+										<li>
+											<span><a href="#WSDI">WSDI</a></span>
+										</li>
+										<li>
+											<span><a href="#HWDI_days">HWDI-days</a></span>
+										</li>
+										<li>
+											<span><a href="#HWDI_period">HWDI-period</a></span>
+										</li>
+										<li>
+											<span><a href="#HWDI_strength">HWDI-strength</a></span>
+										</li>
+										<li>
+											<span><a href="#CDD">Cooling Degree Days</a></span>
+										</li>										
+									</ul>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Extreme Cold</span>
+									<ul>
+										<li>
+											<span><a href="#FD">FD</a></span>
+										</li>
+										<li>
+											<span><a href="#ID">ID</a></span>
+										</li>
+										<li>
+											<span><a href="#TNn">TNn</a></span>
+
+										</li>
+										<li>
+											<span><a href="#TN10p">TN10p</a></span>
+										</li>
+										<li>
+											<span><a href="#TX10p">TX10p</a></span>
+										</li>										
+										<li>
+											<span><a href="#CSDI">CSDI</a></span>
+										</li>
+										<li>
+											<span><a href="#HDD">Heating Degree Days</a></span>
+										</li>										
+									</ul>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Extreme Wet</span>
+									<ul>
+										<li>
+											<span><a href="#Rx1day">Rx1day</a></span>
+										</li>
+										<li>
+											<span><a href="#Rx5day">Rx5day</a></span>
+										</li>
+										<li>
+											<span><a href="#R1mm">Wet Days</a></span>
+
+										</li>										
+										<li>
+											<span><a href="#R10mm">R10mm</a></span>
+
+										</li>
+										<li>
+											<span><a href="#R20mm">R20mm</a></span>
+										</li>
+										<li>
+											<span><a href="#R95pTOT">R95pTOT</a></span>
+										</li>
+										<li>
+											<span><a href="#R99pTOT">R99pTOT</a></span>
+										</li>
+										<li>
+											<span><a href="#prCWD">prCWD</a></span>
+										</li>
+										<li>
+											<span><a href="#PRCPTOT">PRCPTOT</a></span>
+										</li>
+										<li>
+											<span><a href="#SDII">SDII</a></span>
+										</li>
+										
+									</ul>
+								</li>
+								<li data-options="state:'closed'">
+									<span>Extreme Dry</span>
+									<ul>
+										<li>
+											<span><a href="#prCDD">DrySpell</a></span>
+										</li>								
+									</ul>
+								</li>
+								<li data-options="state:'closed'">
+									<span>agroclimatic indices</span>
+									<ul>
+										<li>
+											<span><a href="#GSL">GSL</a></span>
+										</li>
+										<li>
+											<span><a href="#j111">GS-Start</a></span>
+										</li>
+										<li>
+											<span><a href="#j211">GS-End</a></span>
+										</li>
+<!--										<li>
+											<span><a href="http://lamps.math.yorku.ca/OntarioClimate/comingSoon.htm">FFS</a></span>
+										</li>
+										
+										<li>
+											<span><a href="http://lamps.math.yorku.ca/OntarioClimate/comingSoon.htm">CHU</a></span>
+										</li>
+										<li>
+											<span><a href="http://lamps.math.yorku.ca/OntarioClimate/comingSoon.htm">EGDD</a></span>
+										</li>
+										<li>
+											<span><a href="http://lamps.math.yorku.ca/OntarioClimate/comingSoon.htm">DEFICIT</a></span>
+
+										</li>
+-->										
+									</ul>
+								</li>
+							</ul>
+						</li>
+
+					</ul>
+				</li>
+		
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_timeseries.htm"><i class="fa fa-line-chart" style="color:red;"></i><span>Time-series</span></a>
+				</li>			
+				<li>
+					<a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_data.htm"><span class="glyphicon glyphicon-save" style="color:red;"></span><span>Data</span></a>
+				</li>			
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_documents.htm"><i class="fa fa-file-image-o"  style="color:red;"></i> <span>Documents</span></a>
+				</li>
+				<li>
+				    <a href="#faq"><i class="fa fa-info-circle"  style="color:red;"></i> <span>FAQ</span></b></a>
+				</li>			
+			  </ul>
+			</div>
+
+		<div class="pull-right"> 
+<img src="http://lamps.math.yorku.ca/WorldClimate/graph/LampsYorkuLogo.gif" class="img-responsive" style="width:155px;height:50px;">
+</div>		   
+		   </div>
+		</div>	
+	<!--------side menu tree end----------------------------------------------------->		
+
+			
+		<div id="main-wrapper" class="col-md-10 col-sm-9 col-xs-12 pull-right">
+			<div id="main">
+
+
+                <div>
+				<ng-view></ng-view>
+				<!--div ng-view></div-->
+
+	
+	<!--
+	div ng-include="'botomNavBar.html'"></div
+<div class="navbar  navbar-inverse navbar-fixed-bottom" style="margin-top: 100px;margin-botom: 30px;background-color:#b1d261;">	
+	-->
+<div class="navbar  navbar-inverse navbar-fixed-bottom" style="margin-top: 100px;background-color:#b1d261;">
+    <div>
+		<ul class="nav navbar-nav">
+				<li><a href="https://www.ontario.ca/page/ministry-environment-and-climate-change">Funded by: MECP(former MOECC)</a></li>
+		</ul>
+		<ul class="nav navbar-nav pull-right">
+			    
+				<li><a href="http://www.lamps.yorku.ca/">©LAMPS,&nbsp;York University</a></li>
+		</ul>
+    </div>
+</div>
+
+</div>
+
+
+	
+	<script src="app_router_maps.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+
+    <script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+    <script src="http://highcharts.github.io/export-csv/export-csv.js"></script>
+    <script src="assets/baseMaps/Options.js"></script>
+    <script src="assets/baseMaps/polygon9864.js"></script>
+    <script src="assets/baseMaps/Municipal_Arc_simplify.js"></script>
+    <script src="assets/baseMaps/Lake_Arc_simplify.js"></script>
+    <script src="assets/baseMaps/Ontario_arc.js"></script>
+	<!--script src="https://github.com/pablojim/highcharts-ng/blob/master/dist/highcharts-ng.min.js"></script-->
+<!--Analytics code-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61516126-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!--
+<script>
+  (function() {
+    var cx = '006097446396650386672:fsvqimtqsuc';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<gcse:search></gcse:search>
+-->
+</body>
+</html>

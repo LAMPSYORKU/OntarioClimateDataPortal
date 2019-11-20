@@ -1,0 +1,617 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Ontario Climate Change Data Portal</title>
+    <meta charset="utf-8">
+	<meta name="author" content="Dr. Ziwang Deng, Department of Mathematics & Statistics,York University">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://www.w3schools.com/lib/w3.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="assets/lib/jeasyui/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/lib/jeasyui/jquery.easyui.min.js"></script>	
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+	p {font-size: 100%;}
+	h1 {color:#008080;}
+	#header {background-color: #0099FF}
+	//#header {background-image: url("bubble_04.png");}
+  .navbar {
+      margin-bottom: 0;
+	  padding-bottom: 5px;
+      background-color: #0099FF;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #0099FF !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+ #wrapper {
+	margin-top: 30px;
+ }
+ #sidebar-wrapper {
+	padding: 10px 0 0px 0;
+ }
+	</style>
+</head>
+
+<body ng-app="app_timeseries" ng-controller="TreeMenuCtrl">
+<div class="container">
+<!-----------------head nav start-------------------------------->
+	<!--div ng-include="'headNavBar.html'"></div-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+
+
+    <div class="navbar-header">
+
+        <a class="navbar-brand" href="http://lamps.math.yorku.ca/OntarioClimate/index_v18.htm">
+            <span class="glyphicon glyphicon-home" style="color:red;"></span> <span>OCDP</span>
+        </a>
+    </div>
+    <div id="myNavbar">   
+        <ul class="nav navbar-nav">
+            <li>
+			  <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_maps.htm"><span class="glyphicon glyphicon-globe" style="color:red;"></span><span>Maps</a>
+            </li>
+            <li>
+			  <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_timeseries.htm"><i class="fa fa-line-chart" style="color:red;"></i><span>Time-series</a>
+            </li>			
+            <li class="hidden-xs">
+			    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_data.htm"><span class="glyphicon glyphicon-save" style="color:red;"></span><span>Data</span></a>
+            </li>			
+            <li class="hidden-xs">
+              <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_documents.htm"><i class="fa fa-file-image-o"  style="color:red;"></i> <span>Documents</span></a>
+            </li>
+            <li class="hidden-xs">
+              <a href="#faq"><i class="fa fa-info-circle"  style="color:red;"></i> <span>FAQ</span></b></a>
+            </li>			
+        </ul>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li>
+                <a href="#ClimateChangeTeam"><span class="glyphicon glyphicon-user"></span> Team</a>
+            </li>
+
+		    <!--li  style="margin-right:30px;">
+			    <a href="http://lamps.math.yorku.ca/OntarioClimate/searchPage.html"><span class="glyphicon glyphicon-search"></span> Search</a>
+			</li-->
+        </ul>
+	
+	</div>
+	</div>
+</nav>
+	
+
+<!-----------------head nav end-------------------------------->
+
+
+	<div  class="container" id="wrapper">
+	<!--------side menu tree start----------------------------------------------------->
+		<div id="sidebar-wrapper" class="col-md-2 col-sm-3  hidden-xs">
+		
+		<!--
+                  <h6 class="lead text-info text-center"><small>Ontario Climate Information</small></h6>
+		-->
+			<div id="sidebar" class="well well-sm">
+		  
+		  
+			<!--h6 class="lead text-info text-center"><small>Ontario Climate Information</small></h6-->
+		   
+
+	<br>
+			<div>
+			<script>
+			  (function() {
+				var cx = '006097446396650386672:i1sl2siau28';
+				var gcse = document.createElement('script');
+				gcse.type = 'text/javascript';
+				gcse.async = true;
+				gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(gcse, s);
+			  })();
+			</script>
+			<gcse:searchbox-only></gcse:searchbox-only>
+	        </div>		
+	<!--The tree menu start{{DocumentsState}}-->	
+
+			<div class="easyui-panel" style="padding:5px">
+			  <ul class="easyui-tree" data-options="animate:true,lines:true">
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_maps.htm"><span class="glyphicon glyphicon-globe" style="color:red;"></span><span>Maps</span></a>
+				</li>			  
+				<li data-options="state:'open'">
+					<span>Timeseries</span>
+					<ul>
+						<li data-options="state:'closed'">
+							<span>Province</span>
+								<ul>
+        							<li data-options="state:'closed'">
+										<span>Basic Variables</span>
+										<ul>
+											<li>
+												<span><a href="#TmAnnualTime">Mean Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#TxAnnualTime">Maximum Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#TnAnnualTime">Minimum Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#PrAnnualTime">Total Precipitation</a></span>
+											</li>
+										</ul>
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Extreme Hot</span>
+										<ul>
+											<li>
+												<span><a href="#CDDTime">Cooling Degree Days</a></span>
+											</li>	
+											<li>
+												<span><a href="#SUTime">Summer Days</a></span>
+											</li>
+											<li>
+												<span><a href="#TRTime">Tropical Nights</a></span>
+											</li>
+											<li>
+												<span><a href="#TXxTime">Maximum Value of Tx</a></span>
+											</li>
+											<li>
+												<span><a href="#TNxTime">Maximum Value of Tn</a></span>
+											</li>
+											<li>
+												<span><a href="#TN90pTime">Warm Nights</a></span>
+											</li>
+											<li>
+												<span><a href="#TX90pTime">Hot Days</a></span>
+											</li>
+											<li>
+												<span><a href="#WSDITime">Warm Spell Duration Index</a></span>
+											</li>
+											<li>
+												<span><a href="#HWDI_daysTime">HWDI-days</a></span>
+											</li>
+											<li>
+												<span><a href="#HWDI_periodTime">HWDI-period</a></span>
+											</li>
+											<li>
+												<span><a href="#HWDI_strengthTime">HWDI-strength</a></span>
+											</li>											
+										</ul>
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Extreme Cold</span>
+										<ul>
+											<li>
+												<span><a href="#HDDTime">Heating Degree Days</a></span>
+											</li>
+											<li>
+												<span><a href="#IDTime">Icing Days</a></span>
+											</li>
+
+											<li>
+												<span><a href="#TXnTime">Minimum Value of Tx</a></span>
+											</li>
+											<li>
+												<span><a href="#TNnTime">Minimum Value of Tn</a></span>
+											</li>
+											<li>
+												<span><a href="#TN10pTime">Cold Nights</a></span>
+											</li>
+											<li>
+												<span><a href="#TX10pTime">Cold Days</a></span>
+											</li>
+
+											<li>
+												<span><a href="#CSDITime">Cold Spell Duration Index</a></span>
+											</li>									
+											<li>
+												<span><a href="#FDTime">Frost Days</a></span>
+											</li>										
+										</ul>
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Extreme Wet</span>
+										<ul>
+											<li>
+												<span><a href="#SDIITime">Simple Daily Intensity Index</a></span>
+											</li>										
+											<li>
+												<span><a href="#Rx1dayTime">Maximum One-day Precipitation</a></span>
+											</li>
+											<li>
+												<span><a href="#Rx5dayTime">Maximum Five-day Precipitation</a></span>
+											</li>
+											<li>
+												<span><a href="#R10mmTime">Heavy Precipitation Days</a></span>
+											</li>
+											<li>
+												<span><a href="#R20mmTime">Very Heavy Precipitation Days</a></span>
+											</li>
+
+											<li>
+												<span><a href="#PrCWDTime">Consecutive Wet Days</a></span>
+											</li>
+											<li>
+												<span><a href="#R95pDaysTime">Very Wet Days</a></span>
+											</li>
+											<li>
+												<span><a href="#R99pDaysTime">Extreme Wet Days</a></span>
+											</li>
+											<li>
+												<span><a href="#R95pTOTTime">Precipitation Due to Very Wet Days</a></span>
+											</li>									
+											<li>
+												<span><a href="#R99pTOTTime">Precipitation Due to Extreme Wet Days</a></span>
+											</li>										
+										</ul>
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Extreme Dry</span>
+										<ul>
+											<li>
+												<span><a href="#PrCDDTime">Consecutive Dry Days</a></span>
+											</li>										
+										</ul>
+									</li>									
+									
+
+        							<li data-options="state:'closed'">
+										<span>agroclimatic indices</span>
+										<ul>
+											<li>
+												<span><a href="#GSLTime">Growing Season Length</a></span>
+											</li>
+											<li>
+												<span><a href="#DTRTime">Diurnal Temperature Range</a></span>
+											</li>
+
+											<li>
+												<span><a href="#FFSTime">Frost Free Season</a></span>
+											</li>
+									    </ul>
+									</li>
+
+								</ul>
+						</li>
+						<li data-options="state:'closed'">
+							<span>Regions</span>
+								<ul>
+								    <li>
+									<!--span><a href="#RegionLocationMap">Regions in Ontario</a></span-->
+									<span><a href="http://lamps.math.yorku.ca/OntarioClimate/assets/Locations/locationMap_bk.html">Regions in Ontario</a></span-->
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Basic Variables</span>
+										<ul>
+											<li>
+												<span><a href="#SubregionTmAnnualTime">Mean Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTxAnnualTime">Maximum Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTnAnnualTime">Minimum Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionPrAnnualTime">Total Precipitation</a></span>
+											</li>
+										</ul>
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Extreme Hot</span>
+										<ul>
+											<li>
+												<span><a href="#SubregionCDDTime">Cooling Degree Days</a></span>
+											</li>	
+											<li>
+												<span><a href="#SubregionSUTime">Summer Days</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTRTime">Tropical Nights</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTXxTime">Maximum Value of Tx</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTNxTime">Maximum Value of Tn</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTN90pTime">Warm Nights</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTX90pTime">Hot Days</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionWSDITime">Warm Spell Duration Index</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionHWDI_daysTime">HWDI-days</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionHWDI_periodTime">HWDI-period</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionHWDI_strengthTime">HWDI-strength</a></span>
+											</li>											
+										</ul>
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Extreme Cold</span>
+										<ul>
+											<li>
+												<span><a href="#SubregionHDDTime">Heating Degree Days</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionIDTime">Icing Days</a></span>
+											</li>
+
+											<li>
+												<span><a href="#SubregionTXnTime">Minimum Value of Tx</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTNnTime">Minimum Value of Tn</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTN10pTime">Cold Nights</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionTX10pTime">Cold Days</a></span>
+											</li>
+
+											<li>
+												<span><a href="#SubregionCSDITime">Cold Spell Duration Index</a></span>
+											</li>									
+											<li>
+												<span><a href="#SubregionFDTime">Frost Days</a></span>
+											</li>										
+										</ul>
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Extreme Wet</span>
+										<ul>
+											<li>
+												<span><a href="#SubregionSDIITime">Simple Daily Intensity Index</a></span>
+											</li>										
+											<li>
+												<span><a href="#SubregionRx1dayTime">Maximum One-day Precipitation</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionRx5dayTime">Maximum Five-day Precipitation</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionR10mmTime">Heavy Precipitation Days</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionR20mmTime">Very Heavy Precipitation Days</a></span>
+											</li>
+
+											<li>
+												<span><a href="#SubregionPrCWDTime">Consecutive Wet Days</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionR95pDaysTime">Very Wet Days</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionR99pDaysTime">Extreme Wet Days</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionR95pTOTTime">Precipitation Due to Very Wet Days</a></span>
+											</li>									
+											<li>
+												<span><a href="#SubregionR99pTOTTime">Precipitation Due to Extreme Wet Days</a></span>
+											</li>										
+										</ul>
+									</li>
+        							<li data-options="state:'closed'">
+										<span>Extreme Dry</span>
+										<ul>
+											<li>
+												<span><a href="#SubregionPrCDDTime">Consecutive Dry Days</a></span>
+											</li>										
+										</ul>
+									</li>									
+									
+
+        							<li data-options="state:'closed'">
+										<span>Agroclimatic indices</span>
+										<ul>
+											<li>
+												<span><a href="#SubregionGSLTime">Growing Season Length</a></span>
+											</li>
+											<li>
+												<span><a href="#SubregionDTRTime">Diurnal Temperature Range</a></span>
+											</li>
+
+											<li>
+												<span><a href="#SubregionFFSTime">Frost Free Season</a></span>
+											</li>
+									    </ul>
+									</li>
+
+								</ul>
+						
+						</li>
+						<li data-options="state:'closed'">
+
+							<span>Municipalities</span>
+								<ul>
+								    <li>
+									<!--span><a href="#StationLocationMap">150 stations in Ontario</a></span-->
+									<span><a href="http://lamps.math.yorku.ca/OntarioClimate/assets/Locations/station151.html">Locations</a></span-->
+									</li>								
+        							<li data-options="state:'closed'">
+										<span>Basic Variables</span>
+										<ul>
+											<li>
+												<span><a href="#MunicipalTmAnnualTime">Mean Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#MunicipalTxAnnualTime">Maximum Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#MunicipalTnAnnualTime">Minimum Temperature</a></span>
+											</li>
+											<li>
+												<span><a href="#MunicipalPrAnnualTime">Total Precipitation</a></span>
+											</li>
+										</ul>
+									</li>
+								</ul>
+						
+						</li>
+						<li><span><a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_maps.htm">Grids</a></span></li>
+					</ul>
+				</li>
+		
+		
+				<li>
+					<a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_data.htm"><span class="glyphicon glyphicon-save" style="color:red;"></span><span>Data</span></a>
+				</li>			
+				<li>
+				    <a href="http://lamps.math.yorku.ca/OntarioClimate/index_app_documents.htm"><i class="fa fa-file-image-o"  style="color:red;"></i> <span>Documents</span></a>
+				</li>
+				<li>
+				    <a href="#faq"><i class="fa fa-info-circle"  style="color:red;"></i> <span>FAQ</span></b></a>
+				</li>			
+			  </ul>
+			</div>
+
+		<div class="pull-right"> 
+<img src="http://lamps.math.yorku.ca/WorldClimate/graph/LampsYorkuLogo.gif" class="img-responsive" style="width:155px;height:50px;">
+</div>		   
+		   </div>
+		</div>	
+	<!--------side menu tree end----------------------------------------------------->		
+
+			
+		<div id="main-wrapper" class="col-md-10 col-sm-9 col-xs-12 pull-right">
+			<div id="main">
+
+
+                <div>
+				<ng-view></ng-view>
+				<!--div ng-view></div--> 
+	<!--comments-->		
+	<div id="disqus_thread"></div>
+	<script>
+
+	/**
+	*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+	*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+	/*
+	var disqus_config = function () {
+	this.page.url = 'http://lamps.math.yorku.ca/OntarioClimate/';  // Replace PAGE_URL with your page's canonical URL variable
+	this.page.identifier = 'http-lamps-math-yorku-ca-ontarioclimate'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+	*/
+	(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+	s.src = 'https://http-lamps-math-yorku-ca-ontarioclimate.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<!--comments-->
+								
+                </div>
+			</div>
+			
+		</div>
+		
+
+	</div>
+	<!--
+	div ng-include="'botomNavBar.html'"></div
+<div class="navbar  navbar-inverse navbar-fixed-bottom" style="margin-top: 100px;margin-botom: 30px;background-color:#b1d261;">	
+	-->
+<div class="navbar  navbar-inverse navbar-fixed-bottom" style="margin-top: 100px;background-color:#b1d261;">
+    <div>
+		<ul class="nav navbar-nav">
+				<li><a href="https://www.ontario.ca/page/ministry-environment-and-climate-change">Funded by: MECP(former MOECC)</a></li>
+		</ul>
+		<ul class="nav navbar-nav pull-right">
+			    
+				<li><a href="http://www.lamps.yorku.ca/">©LAMPS,&nbsp;York University</a></li>
+		</ul>
+    </div>
+</div>
+
+</div>
+
+
+	
+	<script src="app_router_timeseries.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <!--
+	<script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+
+    <script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+    <script src="http://highcharts.github.io/export-csv/export-csv.js"></script>
+    <script src="assets/baseMaps/Options.js"></script>
+    <script src="assets/baseMaps/polygon9864.js"></script>
+    <script src="assets/baseMaps/Municipal_Arc_simplify.js"></script>
+    <script src="assets/baseMaps/Lake_Arc_simplify.js"></script>
+    <script src="assets/baseMaps/Ontario_arc.js"></script>
+	<!--script src="https://github.com/pablojim/highcharts-ng/blob/master/dist/highcharts-ng.min.js"></script-->
+<!--Analytics code-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61516126-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!--
+<script>
+  (function() {
+    var cx = '006097446396650386672:fsvqimtqsuc';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<gcse:search></gcse:search>
+-->
+</body>
+</html>
