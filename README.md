@@ -65,6 +65,16 @@ jupyter notebook
 
 *If users do not want to use jupyter notebook, they can copy codes to python files and run python programs in general python environment.* 
 
+## JavaScript Code
+In this directory, we stored main html5 programs for the front page and maps, data, time series and documents pages:
+* index.htm -- front page
+* index_app_maps.htm -- maps
+* index_app_timeseries.htm -- time series
+* index_app_data.htm -- data
+* index_app_documents.htm -- documents
+
+
+
 ## [Back to OCDP](http://lamps.math.yorku.ca/OntarioClimate/)
 
 ## License
